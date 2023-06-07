@@ -1,0 +1,48 @@
+<div class="container" id="container" [ngClass]="{'right-panel-active': isSignIn}" *ngIf="!loading">
+	<div class="form-container sign-up-container">
+		<form [formGroup]="createAccount">
+			<h1>Crear Cuenta</h1>
+
+			<input type="text" placeholder="Nombre" formControlName="name" [(ngModel)]='Usuario.nombre'/>
+      <span *ngIf="createAccount.get('name')?.hasError('required') && createAccount.get('name')?.touched"  class="text-danger form-floating">El nombre es requerido</span>
+      <span *ngIf="createAccount.get('name')?.hasError('minLength') && createAccount.get('name')?.touched"  class="text-danger form-floating">El nombre debe contener mínimo 3 letras</span>
+
+			<input type="email" placeholder="Email" formControlName="email" [(ngModel)]='Usuario.email'/>
+      <span *ngIf="createAccount.get('email')?.hasError('required') && createAccount.get('email')?.touched"  class="text-danger form-floating">El email es requerido</span>
+      <span *ngIf="createAccount.get('email')?.hasError('email') && createAccount.get('email')?.touched"  class="text-danger form-floating">El email es inválido</span>
+			<input type="password" placeholder="Contraseña" formControlName="password" [(ngModel)]='Usuario.pass'/>
+			<span *ngIf="createAccount.get('password')?.hasError('required') && createAccount.get('password')?.touched"  class="text-danger form-floating">La contraseña es requerida</span>
+      <span *ngIf="createAccount.get('password')?.hasError('minLength') && createAccount.get('password')?.touched"  class="text-danger form-floating">La contraseña debe contener mínimo 6 carácteres</span>
+      <button (click)="registrar()" [disabled]="createAccount.invalid" type="submit">Crear Cuenta</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form [formGroup]="inicioSesion">
+			<h1>Iniciar Sesión</h1>
+			<input type="email" placeholder="Email" formControlName="email" />
+      <span *ngIf="inicioSesion.get('email')?.hasError('required') && inicioSesion.get('email')?.touched"  class="text-danger form-floating">El email es requerido</span>
+      <span *ngIf="inicioSesion.get('email')?.hasError('email') && inicioSesion.get('email')?.touched"  class="text-danger form-floating">El email es inválido</span>
+			<input type="password" placeholder="Contraseña" formControlName="password"/>
+      <span *ngIf="inicioSesion.get('password')?.hasError('required') && inicioSesion.get('password')?.touched"  class="text-danger form-floating">La contraseña es requerida</span>
+      <span *ngIf="inicioSesion.get('password')?.hasError('minLength') && inicioSesion.get('password')?.touched"  class="text-danger form-floating">La contraseña debe contener mínimo 6 carácteres</span>
+			<button type="submit" (click)="login()">Iniciar Sesión</button>
+			<button type="submit" (click)="accesoRapido()">Acceso Rápido</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Bienvenido de nuevo</h1>
+				<p>Para mantenerse conectado con nosotros, inicie sesión con su información personal.</p>
+				<button class="ghost" (click)="SignUpActive()" id="signIn">Iniciar Sesión</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>¡Hola, bienvenido!</h1>
+				<p>Introduce tus datos personales y comienza el viaje con nosotros.</p>
+				<button class="ghost" (click)="SignInActive()" id="signUp">Crear cuenta</button>
+			</div>
+		</div>
+	</div>
+</div>
+<app-spinner *ngIf="loading"></app-spinner>
+

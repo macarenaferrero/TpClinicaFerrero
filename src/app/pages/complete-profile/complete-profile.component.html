@@ -1,0 +1,87 @@
+<div class="testbox">
+  <form [formGroup]="registro">
+    <div class="banner">
+      <h1>COMPLETE SU REGISTRO</h1>
+    </div>
+    <br />
+    <div class="question">
+      <p>Tipo registro<span class="required">*</span></p>
+      <div class="question-answer">
+        <input type="radio" value="especialista" id="paciente" name="tipo" formControlName="tipo" required />
+        <label for="paciente" class="radio" (click)="DatosPaciente()"><span>Paciente</span></label>
+        <input type="radio" value="paciente" id="especialista" name="tipo" required/>
+        <label for="especialista" class="radio" (click)="DatosEspecialista()"><span>Especialista</span></label>
+      </div>
+      <span *ngIf="registro.get('tipo')?.hasError('required') && registro.get('tipo')?.touched"  class="text-danger form-floating">Debe seleccionar una opción</span>
+    </div>
+    <div *ngIf="isPaciente || isEspecialista">
+    <div class="item">
+      <p>Nombre</p>
+      <input type="text" name="nombre" formControlName="nombre"/>
+      <span *ngIf="registro.get('nombre')?.hasError('required') && registro.get('nombre')?.touched"  class="text-danger form-floating">El nombre es requerido</span>
+      <span *ngIf="registro.get('nombre')?.hasError('pattern') && registro.get('nombre')?.touched"  class="text-danger form-floating">El nombre es inválido</span>
+
+    </div>
+    <div class="item">
+      <p>Apellido</p>
+      <input type="text" name="apellido" formControlName="apellido"/>
+      <span *ngIf="registro.get('apellido')?.hasError('required') && registro.get('apellido')?.touched"  class="text-danger form-floating">El apellido es requerido</span>
+      <span *ngIf="registro.get('apellido')?.hasError('pattern') && registro.get('apellido')?.touched"  class="text-danger form-floating">El apellido es inválido</span>
+    </div>
+    <div class="item">
+      <p>Edad</p>
+      <input type="number" maxlength="3" max="120" name="edad" formControlName="edad"/>
+      <span *ngIf="registro.get('edad')?.hasError('required') && registro.get('edad')?.touched"  class="text-danger form-floating">La edad es requerida</span>
+      <span *ngIf="registro.get('edad')?.hasError('pattern') && registro.get('edad')?.touched"  class="text-danger form-floating">La edad es inválida</span>
+    </div>
+    <div class="item">
+      <p>DNI</p>
+      <input type="number" name="dni" formControlName="dni"/>
+      <span *ngIf="registro.get('dni')?.hasError('required') && registro.get('dni')?.touched"  class="text-danger form-floating">El DNI es requerido</span>
+      <span *ngIf="registro.get('dni')?.hasError('pattern') && registro.get('dni')?.touched"  class="text-danger form-floating">El DNI es inválido</span>
+    </div>
+    <div class="item">
+      <p>Email</p>
+      <input type="email" name="email" formControlName="email"/>
+      <span *ngIf="registro.get('email')?.hasError('required') && registro.get('email')?.touched"  class="text-danger form-floating">El mail es requerido</span>
+      <span *ngIf="registro.get('email')?.hasError('email') && registro.get('email')?.touched"  class="text-danger form-floating">El mail es inválido</span>
+    </div>
+    <div class="item">
+      <p>Password</p>
+      <input type="password" name="password" formControlName="password" />
+      <span *ngIf="registro.get('password')?.hasError('required') && registro.get('password')?.touched"  class="text-danger form-floating">La password es requerida</span>
+
+    </div>
+    <div class="item">
+      <p>Imagen Perfil 1</p>
+      <input type="file" name="imagen1" accept="image/*" formControlName="imagen1">
+      <span *ngIf="registro.get('imagen1')?.hasError('required') && registro.get('imagen1')?.touched"  class="text-danger form-floating">La imagen es requerida</span>
+    </div>
+  </div>
+    <div *ngIf="isPaciente">
+      <div class="item">
+        <p>Imagen Perfil 2</p>
+        <input type="file" name="foto" accept="image/*" formControlName="imagen2">
+        <span *ngIf="registro.get('imagen2')?.hasError('required') && registro.get('imagen2')?.touched"  class="text-danger form-floating">La imagen es requerida</span>
+      </div>
+      <div class="item">
+        <p>Obra Social</p>
+        <input type="text" name="obraSocial" formControlName="obraSocial"/>
+        <span *ngIf="registro.get('obraSocial')?.hasError('required') && registro.get('obraSocial')?.touched"  class="text-danger form-floating">La obra Social es requerida</span>
+      </div>
+      <br />
+      <div class="btn-block">
+        <button type="submit" [disabled]="!registro.valid" (click)="RegistrarPaciente()">Completar registro</button>
+      </div>
+    </div>
+    <div class="question" *ngIf="isEspecialista">
+      <app-lista-especialidades [especialidades]="especialidades"
+        (especialidadSeleccionada)="asignarEspecialidadSeleccionada($event)"></app-lista-especialidades>
+      <app-alta-especialidad></app-alta-especialidad>
+      <br />
+      <div class="btn-block">
+        <button type="submit" (click)="RegistrarEspecialista()">Completar registro</button>
+      </div>
+    </div>
+  </form>
+</div>

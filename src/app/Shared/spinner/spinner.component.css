@@ -1,0 +1,18 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+h1 {
+  letter-spacing: 1.5vw;
+  font-family: 'system-ui';
+  text-transform: uppercase;
+  text-align: center;
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  width: 100%;
+  background-size: cover;
+}
