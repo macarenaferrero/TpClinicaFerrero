@@ -5,14 +5,16 @@ export class Especialista {
   apellido?:string;
   edad?:number;
   dni?:number;
-  email?:string;
-  password?:string;
+  email!:string;
+  password!:string;
   especialidades:string[];
   imagen1?:string;
+  isHabilitado:boolean=true;
+  isAdmin:boolean=false;
 
 
   constructor(id:string,nombre:string, apellido:string, edad:number, dni:number, email:string, password:string,
-    especialidades:string[], imagen1:string){
+    especialidades:string[], imagen1:string,isHabilitado:boolean, isAdmin:boolean=false){
       this.id = id;
       this.nombre = nombre;
       this.apellido = apellido;
@@ -22,5 +24,6 @@ export class Especialista {
       this.password = password;
       this.especialidades = especialidades;
       this.imagen1 = imagen1;
+      this.isHabilitado = isHabilitado;
     }
 }

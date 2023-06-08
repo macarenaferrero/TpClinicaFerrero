@@ -10,22 +10,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from "@angular/fire/compat";
 import { ToastrModule } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
-import { CompleteProfileComponent } from './pages/complete-profile/complete-profile.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { RouterModule } from '@angular/router';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
-import { ListaEspecialidadesComponent } from './Components/lista-especialidades/lista-especialidades.component';
-import { AltaEspecialidadComponent } from './Components/alta-especialidad/alta-especialidad.component';
-import { SharedModule } from './Shared/spinner/shared.module';
+import { SharedModule } from './Shared/shared.module';
+import { AdministradorRoutingModule } from './pages/administrador/administrador-routing.module';
+import { HomeModule } from './pages/home/home.module';
+import { AdministradorModule } from './pages/administrador/administrador.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigInComponent,
-    CompleteProfileComponent,
-    ListaEspecialidadesComponent,
-    AltaEspecialidadComponent
 
   ],
   imports: [
@@ -41,7 +38,10 @@ import { SharedModule } from './Shared/spinner/shared.module';
     AngularFireModule.initializeApp(environment.firebase),
     ToastrModule.forRoot(),
     HttpClientModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    AdministradorRoutingModule,
+    HomeModule,
+    AdministradorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

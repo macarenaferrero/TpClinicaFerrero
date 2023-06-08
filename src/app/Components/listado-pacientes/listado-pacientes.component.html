@@ -1,0 +1,24 @@
+<table class="table table-striped" *ngIf="listadoPacientes != undefined">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Edad</th>
+      <th scope="col">DNI</th>
+      <th scope="col">Obra Social</th>
+      <th scope="col">Email</th>
+    </tr>
+    <tr  *ngFor="let paciente of listadoPacientes">
+      <td>{{paciente!.nombre}}</td>
+      <td>{{paciente!.apellido}}</td>
+      <td>{{paciente!.edad}}</td>
+      <td>{{paciente!.dni}}</td>
+      <td>{{paciente!.obraSocial}}</td>
+      <td>{{paciente!.email}}</td>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+

@@ -13,10 +13,12 @@ export class UsuariosService {
 coleccionPacientes: CollectionReference<DocumentData> = collection(this.firestore, 'pacientes');
 coleccionEspecialistas: CollectionReference<DocumentData> = collection(this.firestore, 'especialistas');
 coleccionEspecialidades: CollectionReference<DocumentData> = collection(this.firestore, 'especialidades');
+coleccionAdministradores: CollectionReference<DocumentData> = collection(this.firestore, 'administradores');
 especialidades!: Observable<any[]>;
 
 constructor(private firestore: Firestore) {
   this.especialidades = collectionData(this.coleccionEspecialidades);
+
 }
 
 
@@ -53,6 +55,21 @@ crearEspecialista(especialistaDato: Especialista): Promise<void> {
       })
       .catch((error) => {
         reject(error);
+      });
+  });
+}
+
+updateEspecialista(especialistaModificado: Especialista): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const especialista = doc(this.coleccionEspecialistas, especialistaModificado.id);
+    updateDoc(especialista, {
+      isHabilitado: especialistaModificado.isHabilitado
+    })
+      .then(() => {
+        resolve(); // Se resuelve la promesa si la operación se completa correctamente
+      })
+      .catch((error) => {
+        reject(error); // Se rechaza la promesa si ocurre un error durante la operación
       });
   });
 }
@@ -97,5 +114,25 @@ cargarEspecialidades(especialistaModificado: Especialista): Promise<void> {
   });
 }
 
+crearAdministrador(administradorDato: Paciente): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const administradores = doc(this.coleccionAdministradores);
+    setDoc(administradores, {
+      id: administradores.id,
+    ...administradorDato // Spread operator para agregar las propiedadesrepartidor al objeto
+    })
+      .then(() => {
+        resolve(); // Se resuelve la promesa si la operación se completa correctamente
+      })
+      .catch((error) => {
+        reject(error); // Se rechaza la promesa si ocurre un error durante la operación
+      });
+  });
+}
+
+getListadoAdministradores(): Observable<any>{
+  const observable = collectionData(this.coleccionAdministradores);
+  return observable;
+}
 
 }

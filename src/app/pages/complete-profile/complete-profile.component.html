@@ -7,14 +7,19 @@
     <div class="question">
       <p>Tipo registro<span class="required">*</span></p>
       <div class="question-answer">
-        <input type="radio" value="especialista" id="paciente" name="tipo" formControlName="tipo" required />
+        <input type="radio" value="paciente" id="paciente" name="tipo" formControlName="tipo" required />
         <label for="paciente" class="radio" (click)="DatosPaciente()"><span>Paciente</span></label>
-        <input type="radio" value="paciente" id="especialista" name="tipo" required/>
+
+        <input type="radio" value="especialista" id="especialista" name="tipo" required/>
         <label for="especialista" class="radio" (click)="DatosEspecialista()"><span>Especialista</span></label>
+        <div *ngIf="isAdministrador">
+          <input type="radio" value="administrador" id="administrador" name="tipo" required/>
+          <label for="administrador" class="radio" (click)="DatosAdministrador()"><span>Administrador</span></label>
+        </div>
       </div>
       <span *ngIf="registro.get('tipo')?.hasError('required') && registro.get('tipo')?.touched"  class="text-danger form-floating">Debe seleccionar una opción</span>
     </div>
-    <div *ngIf="isPaciente || isEspecialista">
+    <div *ngIf="isPaciente || isEspecialista || crearAdministrador">
     <div class="item">
       <p>Nombre</p>
       <input type="text" name="nombre" formControlName="nombre"/>
@@ -56,6 +61,9 @@
       <p>Imagen Perfil 1</p>
       <input type="file" name="imagen1" accept="image/*" formControlName="imagen1">
       <span *ngIf="registro.get('imagen1')?.hasError('required') && registro.get('imagen1')?.touched"  class="text-danger form-floating">La imagen es requerida</span>
+    </div>
+    <div class="btn-block" *ngIf="crearAdministrador">
+      <button type="submit" (click)="RegistrarAdministrador()">Completar registro</button>
     </div>
   </div>
     <div *ngIf="isPaciente">

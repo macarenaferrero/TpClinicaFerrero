@@ -1,0 +1,38 @@
+<router-outlet></router-outlet>
+<app-navbar></app-navbar>
+<main>
+  <div class="container py-4">
+    <header class="pb-3 mb-4">
+      <h1 class="display-5 fw-bold">Administración de usuarios</h1>
+    </header>
+
+    <div class="p-5 mb-4 bg-body-tertiary border rounded-3">
+      <div class="container-fluid py-1">
+        <h4>Pacientes</h4>
+        <app-listado-pacientes [listadoPacientes]="pacientes" ></app-listado-pacientes>
+        <br/>
+        <h4>Especialistas</h4>
+        <app-listado-especialistas [listadoEspecialistas]="especialistas" (especialistaSeleccionado)="modificarEspecialista($event)" ></app-listado-especialistas>
+      </div>
+    </div>
+
+
+    <div class="row align-items-md-stretch" *ngIf="!crearUnUsuario">
+      <div class="col-md-6">
+        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+          <h2>Crear Usuario</h2>
+          <p>Desde aquí podrá crear usuarios del tipo paciente, especialisata o administrador.</p>
+          <button class="btn btn-secondary" type="button" (click)="crearUsuario()">Completar registro</button>
+        </div>
+      </div>
+    </div>
+      <div *ngIf="crearUnUsuario">
+        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+            <app-complete-profile ></app-complete-profile>
+        </div>
+      </div>
+
+
+  </div>
+</main>
+<app-footer></app-footer>

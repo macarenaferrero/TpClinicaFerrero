@@ -1,0 +1,28 @@
+<table class="table table-striped" *ngIf="listadoEspecialistas != undefined">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Edad</th>
+      <th scope="col">DNI</th>
+      <th scope="col">Email</th>
+      <th scope="col">Especialidades</th>
+      <th scope="col">Habilitado</th>
+      <th scope="col">Habilitar / Deshabilitar</th>
+    </tr>
+    <tr  *ngFor="let especialista of listadoEspecialistas">
+      <td>{{especialista!.nombre}}</td>
+      <td>{{especialista!.apellido}}</td>
+      <td>{{especialista!.edad}}</td>
+      <td>{{especialista!.dni}}</td>
+      <td>{{especialista!.email}}</td>
+      <td>{{especialista!.especialidades}}</td>
+      <td>{{especialista!.isHabilitado}}</td>
+      <td><button class="btn btn-dark" (click)="updateEspecialista(especialista)">Cambiar</button></td>
+
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>

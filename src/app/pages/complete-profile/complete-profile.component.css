@@ -41,8 +41,8 @@ box-shadow: 0 0 20px 0 #095484;
 .banner {
 position: relative;
 height: 210px;
-background: #FF416C;
-background: linear-gradient(to right, #f86c53, #FF416C);
+background: #646262;
+background: linear-gradient(to right, #363433, #636262);
 background-size: cover;
 display: flex;
 font-family: 'Montserrat', sans-serif;

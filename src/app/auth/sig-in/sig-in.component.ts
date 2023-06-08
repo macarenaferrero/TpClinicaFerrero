@@ -47,7 +47,7 @@ login(){
     console.log(user);
     console.log("Ingreso satisfactorio");
       this.toastr.success("Ingreso satisfactorio","Sesión iniciada",{timeOut: 1000});
-      this.router.navigate(['/completeProfile']);
+      this.router.navigate(['/home']);
   }).catch((error:any) => {
     this.loading = false;
     this.toastr.error(error, "Error");
