@@ -27,7 +27,6 @@ export class UsuariosComponent {
   modificarEspecialista = (especialista: Especialista) => {
     this.especialistaModificado = especialista;
     this.isHabilitado = !this.isHabilitado;
-    console.log(this.isHabilitado);
     const nuevoListadoEspecialistas = this.especialistas.map((p) => {
       if (p.id === especialista.id) {
         p.isHabilitado === especialista.isHabilitado;
@@ -37,25 +36,6 @@ export class UsuariosComponent {
       }
     });
     this.especialistas = nuevoListadoEspecialistas; // Actualiza el arreglo original
-
-    // admin
-    // .auth()
-    // .getUserByEmail(this.especialistaModificado.email)
-    // .then((userRecord) => {
-    //   const uid = userRecord.uid;
-    //   console.log(`El UID del usuario con correo ${this.especialistaModificado} es: ${uid}`);
-    //   this.uid=uid;
-    // });
-
-    // admin.auth().updateUser(this.uid, {
-    //   disabled: true
-    // })
-    // .then(() => {
-    //   console.log('Cuenta de usuario inhabilitada correctamente');
-    // })
-    // .catch((error) => {
-    //   console.error('Error al inhabilitar la cuenta de usuario:', error);
-    // });
 
   }
 

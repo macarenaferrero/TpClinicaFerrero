@@ -16,7 +16,7 @@ export class HabilitadosGuard implements CanActivate {
       if(user != null){
         return true;
       }else{
-        this.toast.error("Debe loguearse para acceder a esta sección", "Error");
+        this.toast.error("Debe loguearse para acceder a esta sección", "Error",{timeOut: 500});
         this.router.navigate(['/bienvenidx']);
         return false;
       }

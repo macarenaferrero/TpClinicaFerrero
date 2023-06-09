@@ -33,8 +33,8 @@ constructor(private fb:FormBuilder, private toastr: ToastrService, private route
       apellido:['',[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       edad:['',[Validators.required, Validators.pattern('^[0-9]*$')]],
       dni:['',[Validators.required, Validators.pattern('^[0-9]*$')]],
-      email:[''],
-      password:[''],
+      email:['',[Validators.required, Validators.email]],
+      password:['',[Validators.required, Validators.minLength(6)]],
       imagen1:['',[Validators.required]],
     });
 
@@ -44,7 +44,6 @@ ngOnInit(){
   this.isPaciente = false;
 
   const currentUrl = this.router.url;
-  console.log('URL actual:', currentUrl);
   if(currentUrl == '/administrador'){
     this.isAdministrador = true;
     this.isEspecialista = false;
@@ -54,8 +53,6 @@ ngOnInit(){
   this.afAuth.currentUser.then(user=>{
     if(user){
       this.usuario = user;
-      console.log(this.usuario['email']);
-      console.log(this.usuario);
       this.registro.patchValue({email: this.usuario['email']});
     }
   })
@@ -85,7 +82,6 @@ DatosAdministrador(){
 }
 
 RegistrarPaciente(){
-console.log("guardando paciente");
 const datoGrabar: Paciente = {
   nombre: this.registro.get('nombre')?.value,
   apellido: this.registro.get('apellido')?.value,
@@ -101,24 +97,23 @@ const datoGrabar: Paciente = {
 this.usuarioService.crearPaciente(datoGrabar).then(()=>{
   this.afAuth.currentUser.then(user=>{()=>{
     user?.updateProfile({
-      photoURL: "habilitado"
+      displayName: "Paciente"
     }).then(() => {
-      console.log(user.photoURL);
+      console.log(user.displayName);
+      console.log(user);
       return user;
     })
   }});
-  this.toastr.success('El paciente se registro con exito', 'Paciente Registrado');
+  this.toastr.success('El paciente se registro con exito', 'Paciente Registrado',{timeOut: 500});
   this.router.navigate(['/home']);
 }).catch(error=>{
-  this.toastr.error('Error al registrarse: ' + error, 'Error');
-  console.log(error);
+  this.toastr.error('Error al registrarse: ' + error, 'Error',{timeOut: 500});
   this.router.navigate(['/bienvenida']);
 });
 }
 
 
 RegistrarEspecialista(){
-  console.log("guardando especialista");
   const datoGrabar: Especialista = {
     nombre: this.registro.get('nombre')?.value,
     apellido: this.registro.get('apellido')?.value,
@@ -134,26 +129,22 @@ RegistrarEspecialista(){
   this.usuarioService.crearEspecialista(datoGrabar).then(()=>{
     this.afAuth.currentUser.then(user=>{()=>{
       user?.updateProfile({
-        photoURL: "habilitado"
+        displayName: "Especialista"
       }).then(() => {
-        console.log(user.photoURL);
+        console.log(user.displayName);
+        console.log(user);
         return user;
       })
     }});
-
-
-
-    this.toastr.success('El especialista se registro con exito', 'Especialista Registrado');
+    this.toastr.success('El especialista se registro con exito', 'Especialista Registrado',{timeOut: 500});
     this.router.navigate(['/home']);
   }).catch(error=>{
-    this.toastr.error('Error al registrarse: ' + error, 'Error');
-    console.log(error);
+    this.toastr.error('Error al registrarse: ' + error, 'Error',{timeOut: 500});
     this.router.navigate(['/bienvenida']);
   });
   }
 
   RegistrarAdministrador(){
-    console.log("guardando administrador");
     const datoGrabar: Administador = {
       nombre: this.registro.get('nombre')?.value,
       apellido: this.registro.get('apellido')?.value,
@@ -169,7 +160,6 @@ RegistrarEspecialista(){
     .createUserWithEmailAndPassword(this.registro.get('email')?.value, this.registro.get('password')?.value)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
       if(user != null){
       user.updateProfile({
         displayName: "Administrador"
@@ -181,9 +171,9 @@ RegistrarEspecialista(){
       throw new Error("No se pudo obtener el usuario");
     }
     })
-      this.toastr.success('El administrador se registro con exito', 'Administrador Registrado');
+      this.toastr.success('El administrador se registro con exito', 'Administrador Registrado',{timeOut: 500});
     }).catch(error=>{
-      this.toastr.error('Error al registrarse el administrador: ' + error, 'Error');
+      this.toastr.error('Error al registrarse el administrador: ' + error, 'Error',{timeOut: 500});
     });
     this.router.navigate(['/home']);
     }
@@ -193,7 +183,6 @@ RegistrarEspecialista(){
     this.especialidadSeleccionada = especialidad;
     this.especialidadesSeleccionadas.push(this.especialidadSeleccionada.especialidadData);
     this.registro.controls['especialidades'].setValue(this.especialidadesSeleccionadas);
-    console.log(this.especialidadesSeleccionadas);
   }
 
 }

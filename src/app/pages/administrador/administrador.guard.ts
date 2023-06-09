@@ -15,7 +15,6 @@ export class AdministradoresGuard implements CanActivate {
       const user: any | null = await this.afAuth.currentUser;
     if(user != null){
       const tipo = user.displayName;
-      console.log(tipo);
       if(tipo == "Administrador"){
       return true;
       }else{

@@ -6,6 +6,7 @@
 			<input type="text" placeholder="Nombre" formControlName="name" [(ngModel)]='Usuario.nombre'/>
       <span *ngIf="createAccount.get('name')?.hasError('required') && createAccount.get('name')?.touched"  class="text-danger form-floating">El nombre es requerido</span>
       <span *ngIf="createAccount.get('name')?.hasError('minLength') && createAccount.get('name')?.touched"  class="text-danger form-floating">El nombre debe contener mínimo 3 letras</span>
+      <span *ngIf="createAccount.get('name')?.hasError('pattern') && createAccount.get('name')?.touched"  class="text-danger form-floating">El nombre es inválido</span>
 
 			<input type="email" placeholder="Email" formControlName="email" [(ngModel)]='Usuario.email'/>
       <span *ngIf="createAccount.get('email')?.hasError('required') && createAccount.get('email')?.touched"  class="text-danger form-floating">El email es requerido</span>

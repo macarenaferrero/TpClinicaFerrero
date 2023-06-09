@@ -55,6 +55,7 @@
       <p>Password</p>
       <input type="password" name="password" formControlName="password" />
       <span *ngIf="registro.get('password')?.hasError('required') && registro.get('password')?.touched"  class="text-danger form-floating">La password es requerida</span>
+      <span *ngIf="registro.get('minLength')?.hasError('required') && registro.get('password')?.touched"  class="text-danger form-floating">La password debe terner mínimo 6 carácteres</span>
 
     </div>
     <div class="item">

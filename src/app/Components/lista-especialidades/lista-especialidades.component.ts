@@ -26,7 +26,6 @@ export class ListaEspecialidadesComponent {
 
 
   asignarEspecialidad(especialidad: any){
-    console.log(especialidad);
 
     this.especialidadSeleccionada.emit(especialidad);
   }
