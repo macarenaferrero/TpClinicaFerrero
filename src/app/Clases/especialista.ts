@@ -9,12 +9,12 @@ export class Especialista {
   password!:string;
   especialidades:string[];
   imagen1?:string;
-  isHabilitado:boolean=true;
+  isHabilitado:boolean=false;
   isAdmin:boolean=false;
-
+  isEspecialista:boolean=true;
 
   constructor(id:string,nombre:string, apellido:string, edad:number, dni:number, email:string, password:string,
-    especialidades:string[], imagen1:string,isHabilitado:boolean, isAdmin:boolean=false){
+    especialidades:string[], imagen1:string,isHabilitado:boolean=false, isAdmin:boolean=false, isEspecialista:boolean=true){
       this.id = id;
       this.nombre = nombre;
       this.apellido = apellido;

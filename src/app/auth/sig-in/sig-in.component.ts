@@ -7,7 +7,7 @@ import { Usuario } from 'src/app/Clases/usuario';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 import { Especialista } from 'src/app/Clases/especialista';
 import { Paciente } from 'src/app/Clases/paciente';
-import { Administador } from 'src/app/Clases/administrador';
+import { Administrador } from 'src/app/Clases/administrador';
 
 @Component({
   selector: 'app-sig-in',
@@ -22,8 +22,9 @@ Usuario:Usuario=new Usuario;
 loading: boolean=false;
 especialistas:Especialista[]=[];
 pacientes:Paciente[]=[];
-administradores:Administador[]=[];
+administradores:Administrador[]=[];
 isHabilitado:boolean=true;
+usuarioAIngresar:any;
 
 constructor(private fb:FormBuilder, private afAuth:AngularFireAuth, private router:Router, private toastr:ToastrService,private usuariosService:UsuariosService) {
   this.createAccount = this.fb.group({
@@ -52,25 +53,34 @@ login(){
   this.loading = true;
   this.afAuth.signInWithEmailAndPassword(email, pass)
   .then((user:any) => {
-    console.log(user.user.displayName);
-    if(user.user.displayName == "Especialista"){
-      this.especialistas.forEach(especialista => {
-        if(especialista.email == user.user.email){
-          if(especialista.isHabilitado =false){
-            this.toastr.error("El usuario no esta habilitado", "Error",{timeOut: 500});
-            this.loading = false;
-          }else{
-            this.toastr.success("Bienvenido", "Usuario exitoso",{timeOut: 500});
-            this.router.navigate(['/home']);
-            this.loading = false;
+    if(user.user.emailVerified){
+        this.especialistas.forEach(especialista => {
+          if(especialista.email == user.user.email){
+            this.usuarioAIngresar = especialista;
           }
-        }
-      });
-    }else{
-      this.toastr.success("Bienvenido", "Usuario exitoso",{timeOut: 500});
+        });
+        if(this.usuarioAIngresar != null){
+          if(this.usuarioAIngresar.isHabilitado){
+            this.toastr.success("Ingreso satisfactorio", "Bienvenido", {timeOut: 500});
             this.router.navigate(['/home']);
+          }else{
+            this.toastr.error("Usuario inhabilitado", "Error", {timeOut: 1000});
             this.loading = false;
+            this.usuarioAIngresar = null;
+            this.router.navigate(['/bienvenida']);
+            this.afAuth.signOut();
+          }
+        }else{
+          this.toastr.success("Ingreso satisfactorio", "Bienvenido", {timeOut: 500});
+          this.router.navigate(['/home']);
+        }
+    }else{
+      this.loading = false;
+      this.router.navigate(['/bienvenida']);
+      this.toastr.error("Verifique su casilla de mail", "Error", {timeOut: 1000});
+      this.afAuth.signOut();
     }
+
   }).catch((error) => {
     this.loading = false;
       this.toastr.error(error, "Error");
@@ -79,7 +89,7 @@ login(){
 
 accesoRapido(){
   this.inicioSesion.setValue({
-    email: "verolozano@gmail.com",
+    email: "tkd05413@omeie.com",
     password:"123456"
   });
 }
@@ -88,14 +98,16 @@ registrar(){
   this.loading = true;
   this.afAuth
   .createUserWithEmailAndPassword(this.Usuario.email, this.Usuario.pass)
-  .then(() => {
-    this.toastr.success("Usuario creado con exito", 'Usuario exitoso',{timeOut: 500});
+  .then((credential) => {
+    credential.user?.sendEmailVerification();
+    this.toastr.success("Usuario creado con exito, luego de completar el registro, debe verificar su casilla de mail", 'Usuario creado');
     this.router.navigate(['/completeProfile']);
   }).catch((error) => {
     this.loading = false;
       this.toastr.error(error, "Error");
   });
 }
+
 
 ngOnInit(){
   this.usuariosService.getListadoEspecialistas().subscribe((especialistas:any)=>{

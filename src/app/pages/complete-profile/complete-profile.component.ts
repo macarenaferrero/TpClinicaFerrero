@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Administador } from 'src/app/Clases/administrador';
+import { Administrador } from 'src/app/Clases/administrador';
 import { Especialista } from 'src/app/Clases/especialista';
 import { Paciente } from 'src/app/Clases/paciente';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
@@ -92,20 +92,26 @@ const datoGrabar: Paciente = {
   imagen1: this.registro.get('imagen1')?.value,
   obraSocial: this.registro.get('obraSocial')?.value,
   imagen2: this.registro.get('imagen2')?.value,
-  isAdmin:false
+  isAdmin:false,
+  isEspecialista:false,
 }
 this.usuarioService.crearPaciente(datoGrabar).then(()=>{
-  this.afAuth.currentUser.then(user=>{()=>{
-    user?.updateProfile({
-      displayName: "Paciente"
-    }).then(() => {
-      console.log(user.displayName);
-      console.log(user);
-      return user;
+  if(this.isAdministrador){
+    this.afAuth
+    .createUserWithEmailAndPassword(this.registro.get('email')?.value, this.registro.get('password')?.value)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      user?.sendEmailVerification();
     })
-  }});
-  this.toastr.success('El paciente se registro con exito', 'Paciente Registrado',{timeOut: 500});
-  this.router.navigate(['/home']);
+  }
+  if(this.isAdministrador){
+    this.toastr.success('El paciente se registro con exito', 'Paciente Registrado',{timeOut: 500});
+    this.router.navigate(['/home']);
+  }else
+  {
+    this.router.navigate(['/bienvenida']);
+    this.toastr.info('Por favor, verifique su correo electrónico', 'Verifique su correo',{timeOut: 500});
+  }
 }).catch(error=>{
   this.toastr.error('Error al registrarse: ' + error, 'Error',{timeOut: 500});
   this.router.navigate(['/bienvenida']);
@@ -123,21 +129,27 @@ RegistrarEspecialista(){
     password: this.registro.get('password')?.value,
     imagen1: this.registro.get('imagen1')?.value,
     especialidades: this.especialidadesSeleccionadas,
-    isHabilitado:true,
-    isAdmin:false
+    isHabilitado:false,
+    isAdmin:false,
+    isEspecialista:true
   }
   this.usuarioService.crearEspecialista(datoGrabar).then(()=>{
-    this.afAuth.currentUser.then(user=>{()=>{
-      user?.updateProfile({
-        displayName: "Especialista"
-      }).then(() => {
-        console.log(user.displayName);
-        console.log(user);
-        return user;
+    if(this.isAdministrador){
+      this.afAuth
+      .createUserWithEmailAndPassword(this.registro.get('email')?.value, this.registro.get('password')?.value)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        user?.sendEmailVerification();
       })
-    }});
-    this.toastr.success('El especialista se registro con exito', 'Especialista Registrado',{timeOut: 500});
-    this.router.navigate(['/home']);
+    }
+    if(this.isAdministrador){
+      this.toastr.success('El especialista se registró con exito', 'Especialista Registrado',{timeOut: 500});
+      this.router.navigate(['/home']);
+    }else
+    {
+      this.router.navigate(['/bienvenida']);
+      this.toastr.info('Por favor, verifique su correo electrónico', 'Verifique su correo',{timeOut: 500});
+    }
   }).catch(error=>{
     this.toastr.error('Error al registrarse: ' + error, 'Error',{timeOut: 500});
     this.router.navigate(['/bienvenida']);
@@ -145,7 +157,7 @@ RegistrarEspecialista(){
   }
 
   RegistrarAdministrador(){
-    const datoGrabar: Administador = {
+    const datoGrabar: Administrador = {
       nombre: this.registro.get('nombre')?.value,
       apellido: this.registro.get('apellido')?.value,
       edad: this.registro.get('edad')?.value,
@@ -153,13 +165,15 @@ RegistrarEspecialista(){
       email: this.registro.get('email')?.value,
       password: this.registro.get('password')?.value,
       imagen1: this.registro.get('imagen1')?.value,
-      isAdmin:this.isAdministrador
+      isAdmin:this.isAdministrador,
+      isEspecialista:false
     }
     this.usuarioService.crearAdministrador(datoGrabar).then(()=>{
       this.afAuth
     .createUserWithEmailAndPassword(this.registro.get('email')?.value, this.registro.get('password')?.value)
     .then((userCredential) => {
       const user = userCredential.user;
+      user?.sendEmailVerification();
       if(user != null){
       user.updateProfile({
         displayName: "Administrador"

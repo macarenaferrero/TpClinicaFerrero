@@ -15,10 +15,11 @@ coleccionEspecialistas: CollectionReference<DocumentData> = collection(this.fire
 coleccionEspecialidades: CollectionReference<DocumentData> = collection(this.firestore, 'especialidades');
 coleccionAdministradores: CollectionReference<DocumentData> = collection(this.firestore, 'administradores');
 especialidades!: Observable<any[]>;
+especialistas!: Observable<any[]>;
 
 constructor(private firestore: Firestore) {
   this.especialidades = collectionData(this.coleccionEspecialidades);
-
+  this.especialistas = collectionData(this.coleccionEspecialistas);
 }
 
 
@@ -78,6 +79,21 @@ getListadoEspecialistas(): Observable<any>{
   const observable = collectionData(this.coleccionEspecialistas);
   return observable;
 }
+
+verificarAprobacionAdmin(especialista: Especialista) {
+  this.especialistas.forEach((item:any) => {
+    if (item.email === especialista.email) {
+      if (item.isHabilitado) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    return false;
+  });
+}
+
 
 addEspecilidad(especialidadData: string): Promise<void> {
   return new Promise((resolve, reject) => {

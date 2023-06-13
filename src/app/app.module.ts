@@ -18,11 +18,13 @@ import { SharedModule } from './Shared/shared.module';
 import { AdministradorRoutingModule } from './pages/administrador/administrador-routing.module';
 import { HomeModule } from './pages/home/home.module';
 import { AdministradorModule } from './pages/administrador/administrador.module';
+import { MisTurnosComponent } from './pages/mis-turnos/mis-turnos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigInComponent,
+    MisTurnosComponent,
 
   ],
   imports: [

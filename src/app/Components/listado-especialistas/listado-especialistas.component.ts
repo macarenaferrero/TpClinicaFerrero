@@ -30,6 +30,7 @@ export class ListadoEspecialistasComponent {
       especialidades: especialista.especialidades,
       isHabilitado: !especialista.isHabilitado,
       isAdmin: especialista.isAdmin,
+      isEspecialista: especialista.isEspecialista
     }
     this.especilistaModificado.updateEspecialista(datoGrabar).then(() => {
       this.toastr.success("Especialista modificado","Guardado", { timeOut: 1000 });

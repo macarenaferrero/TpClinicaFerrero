@@ -18,7 +18,7 @@ export class UsuariosComponent {
   especialistas: Especialista[] = [];
   suscripcion: Subscription = new Subscription();
   suscripcion2: Subscription = new Subscription();
-  isHabilitado=true;
+  isHabilitado=false;
   crearUnUsuario:boolean=false;
   especialistaModificado?:Especialista;
   uid:string="";
@@ -51,7 +51,6 @@ export class UsuariosComponent {
         })
       });
     });
-    this.toastr.success("Pacientes cargados correctamente", "Cargado", { timeOut: 1000 });
 
   }
 
@@ -64,8 +63,6 @@ export class UsuariosComponent {
         })
       });
     });
-
-    this.toastr.success("Especialistas cargados correctamente", "Cargado", { timeOut: 1000 });
 
   }
 
