@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" routerLink="/administrador/usuarios" *ngIf="isAdmin">Usuarios</a>
-        <a class="nav-link active" routerLink="/home/turnos">Turnos</a>
+        <a class="nav-link active" routerLink="/administrador/turnos" *ngIf="isAdmin">Turnos</a>
         <a class="nav-link active" routerLink="/paciente/mis-turnos" *ngIf="isPaciente">Mis Turnos</a>
         <a class="nav-link active" routerLink="/especialista/mis-turnos" *ngIf="isEspecialista">Mis Turnos</a>
         <a class="nav-link active" routerLink="/home/solicitar-turno">Solicitar Turno</a>

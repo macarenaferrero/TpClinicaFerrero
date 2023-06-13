@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+
+<div class="containter p-5">
+  <div class="row">
+      <h4 class="pr-3">Busqueda de turnos</h4>
+      <div class="form-group col-md-6">
+          <input class="form-control">
+      </div>
+  </div>
+
+  <br>
+
+  <table class="table table-striped table-bordered"  [@slideInOut]>
+      <thead>
+          <tr>
+              <th></th>
+              <th>Fecha y Hora</th>
+              <th>Paciente</th>
+              <th>Especialista</th>
+              <th>Especialidad</th>
+              <th>Estado</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let turno of turnos" appResaltar="grey">
+              <!-- <th>{{i+1}}</th> -->
+              <td>{{turno.fecha}} - {{turno.hora}}</td>
+              <td>{{turno.paciente.nombre}} {{turno.paciente.apellido}}</td>
+              <td>{{turno.especialista.nombre}} {{turno.especialista.apellido}}</td>
+              <td>{{turno.especialidad.nombre}}</td>
+              <td appEstado>{{turno.estado}}</td>
+          </tr>
+      </tbody>
+  </table>
+
+
+
+  <!-- <app-tabla-turnos [turnos]="turnosOcupados" (turnoSeleccionado)="asignarTurno($event)"></app-tabla-turnos> -->
+  <app-turno-detalle *ngIf="turnoSeleccionado" [turnoDetalle]="turnoSeleccionado"></app-turno-detalle>
+</div>
+
+<app-footer></app-footer>
