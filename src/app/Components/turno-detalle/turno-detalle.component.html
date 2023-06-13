@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+      <div class="col-12">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <h2>Turno</h2>
+              <span class="badge badge-secondary badge-pill">3</span>
+          </h4>
+          <div class="row">
+              <div class="form-group col-md-6">
+                  <h4>Fecha-Hora: {{turnoDetalle.fecha}} - {{turnoDetalle.hora}}</h4>
+                  <h4>Paciente: {{turnoDetalle.paciente.nombre}} {{turnoDetalle.paciente.apellido}}</h4>
+                  <h4>Especialista: {{turnoDetalle.especialista.nombre}} {{turnoDetalle.especialista.apellido}}</h4>
+                  <h4>Especialidad: {{turnoDetalle.especialidad.nombre}}</h4>
+                  <h4>Estado: {{turnoDetalle.estado}}</h4>
+                  <div *ngIf="isEspecialista">
+                      <div *ngIf="turnoDetalle.estado == 'REALIZADO'" class="form-group">
+                          <h4 *ngIf="turnoDetalle.estado == 'REALIZADO' || turnoDetalle.estado == 'CANCELADO'">
+                              Comentarios Especialista: {{turnoDetalle.comentariosEspecialista}}</h4>
+                          <textarea *ngIf="isEspecialista" class="form-control"
+                              [(ngModel)]="nuevoComentarioEspecialista"
+                              placeholder="Deje un comentario..."></textarea>
+                          <button class="btn btn-success mb-2" (click)="enviarComentario()">Enviar</button>
+                      </div>
+                  </div>
+                  <div *ngIf="isPaciente">
+                      <div *ngIf="turnoDetalle.estado == 'REALIZADO'" class="form-group">
+                          <h4>Comentarios Paciente: {{turnoDetalle.comentariosPaciente}}</h4>
+                          <textarea *ngIf="isPaciente" class="form-control"
+                              [(ngModel)]="nuevoComentarioPaciente"></textarea><button class="btn btn-success"
+                              (click)="enviarComentario()">Enviar</button>
+                      </div>
+                  </div>
+
+                  <div *ngIf="turnoDetalle.estado == 'PENDIENTE'">
+                      <div *ngIf="turnoDetalle.estado != 'ACEPTADO' && turnoDetalle.estado != 'RECHAZADO' && turnoDetalle.estado != 'REALIZADO' && turnoDetalle.estado != 'CANCELADO'" class="form-group col-md-2">
+                          <button class="btn btn-warning mb-2" (click)="cancelar()">CANCELAR</button>
+                      </div>
+                      <div *ngIf="turnoDetalle.estado != 'ACEPTADO' && turnoDetalle.estado != 'CANCELADO' && turnoDetalle.estado != 'REALIZADO' && turnoDetalle.estado != 'RECHAZADO'" class="form-group col-md-2">
+                          <button class="btn btn-danger mb-2" (click)="rechazar()"
+                              *ngIf="isEspecialista">RECHAZAR</button>
+                      </div>
+                      <div *ngIf="turnoDetalle.estado != 'RECHAZADO' && turnoDetalle.estado != 'REALIZADO' && turnoDetalle.estado != 'CANCELADO' && turnoDetalle.estado != 'ACEPTADO'">
+                          <button class="btn btn-success mb-2" (click)="aceptar()"
+                              *ngIf="isEspecialista">ACEPTAR</button>
+                      </div>
+                  </div>
+                  <div *ngIf="turnoDetalle.estado == 'ACEPTADO' && turnoDetalle.estado != 'FINALIZADO'">
+                      <button class="btn btn-primary mb-2" (click)="finalizar()"
+                          *ngIf="isEspecialista">FINALIZAR</button>
+                  </div>
+              </div>
+              <div *ngIf="isEspecialista">
+                  <h4 *ngIf="turnoDetalle.comentariosEspecialista != ''">Comentarios Especialista:
+                      {{turnoDetalle.comentariosEspecialista}}</h4>
+
+                      <div *ngIf="cancela || rechaza || finaliza" class="form-group">
+                          <div *ngIf="!noMostrarEnviarComentarioEsp">
+                              <textarea *ngIf="isEspecialista" class="form-control"
+                                  [(ngModel)]="nuevoComentarioEspecialista" placeholder="Deje un comentario..."></textarea>
+                              <button class="btn btn-success mb-2" (click)="enviarComentario()">Enviar</button>
+                          </div>
+                      </div>
+
+              </div>
+              <div *ngIf="isPaciente">
+                  <h4 *ngIf="turnoDetalle.comentariosPaciente != ''">Comentarios Paciente:
+                      {{turnoDetalle.comentariosPaciente}}</h4>
+                  <div *ngIf="cancela" class="form-group">
+                      <div *ngIf="!noMostrarEnviarComentarioPac">
+                          <textarea *ngIf="isPaciente" class="form-control" [(ngModel)]="nuevoComentarioPaciente"
+                              placeholder="Deje un comentario..."></textarea>
+                          <button class="btn btn-success mb-2" (click)="enviarComentario()">Enviar</button>
+                      </div>
+                  </div>
+              </div>
+              <div *ngIf="isAdmin">
+                  <h4 *ngIf="turnoDetalle.comentariosAdmin != ''">Comentarios Administrador:
+                      {{turnoDetalle.comentariosAdmin}}</h4>
+                  <div *ngIf="cancela" class="form-group">
+                      <div *ngIf="!noMostrarEnviarComentarioAdmin">
+                          <textarea *ngIf="isAdmin" class="form-control"
+                              [(ngModel)]="nuevoComentarioAdmin" placeholder="Deje un comentario..."></textarea>
+                          <button class="btn btn-success mb-2" (click)="enviarComentario()">Enviar</button>
+                      </div>
+                  </div>
+              </div>
+              <!-- <div class="form-group col-8">
+                  <div class="row">
+                      <div class="form-group col-md-4">
+                          <img [src]="turnoDetalle.img1Url">
+                      </div>
+                      <div class="form-group col-md-4">
+                          <img [src]="turnoDetalle.img2Url">
+                      </div>
+                  </div>
+              </div> -->
+          </div>
+      </div>
+  </div>
+</div>

@@ -5,6 +5,8 @@ import { CompleteProfileComponent } from './pages/complete-profile/complete-prof
 import { HomeModule } from './pages/home/home.module';
 import { AdministradorModule } from './pages/administrador/administrador.module';
 import { HabilitadosGuard } from './auth/habilitados.guard';
+import { PacienteModule } from './paciente/paciente.module';
+import { EspecialistaModule } from './especialista/especialista.module';
 
 const routes: Routes = [
   { path: 'bienvenida', component: SigInComponent },
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/bienvenida', pathMatch: 'full' },
   { path: 'home', loadChildren:()=>import('./pages/home/home.module').then(m => HomeModule)},
   { path: 'administrador', loadChildren:()=>import('./pages/administrador/administrador.module').then(m => AdministradorModule)},
+  { path: 'paciente', loadChildren:()=>import('./paciente/paciente.module').then(m => PacienteModule)},
+  { path: 'especialista', loadChildren:()=>import('./especialista/especialista.module').then(m => EspecialistaModule)},
   { path: '**', redirectTo: '/bienvenida', pathMatch: 'full' }
 ];
 

@@ -14,6 +14,9 @@ import { SharedModule } from 'src/app/Shared/shared.module';
 import { CompleteProfileComponent } from '../complete-profile/complete-profile.component';
 import { ListaEspecialidadesComponent } from 'src/app/Components/lista-especialidades/lista-especialidades.component';
 import { AltaEspecialidadComponent } from 'src/app/Components/alta-especialidad/alta-especialidad.component';
+import { MisTurnosComponent } from '../../paciente/mis-turnos/mis-turnos.component';
+import { TurnoDetalleComponent } from 'src/app/Components/turno-detalle/turno-detalle.component';
+import { EncuestaComponent } from 'src/app/Components/encuesta/encuesta.component';
 
 
 
@@ -23,7 +26,8 @@ import { AltaEspecialidadComponent } from 'src/app/Components/alta-especialidad/
     CompleteProfileComponent,
     ListaEspecialidadesComponent,
     AltaEspecialidadComponent,
-
+    TurnoDetalleComponent,
+    EncuestaComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,8 @@ import { AltaEspecialidadComponent } from 'src/app/Components/alta-especialidad/
     CompleteProfileComponent,
     ListaEspecialidadesComponent,
     AltaEspecialidadComponent,
+    TurnoDetalleComponent,
+    EncuestaComponent
   ]
 })
 export class HomeModule { }
