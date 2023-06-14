@@ -12,6 +12,9 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { TurnosComponent } from './turnos/turnos.component';
+import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
+import { MiPerfilComponent } from 'src/app/Components/mi-perfil/mi-perfil.component';
+import { MisHorariosComponent } from 'src/app/especialista/mis-horarios/mis-horarios.component';
 
 
 
@@ -20,7 +23,8 @@ import { TurnosComponent } from './turnos/turnos.component';
     UsuariosComponent,
     ListadoEspecialistasComponent,
     ListadoPacientesComponent,
-    TurnosComponent
+    TurnosComponent,
+    SolicitarTurnoComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,9 @@ import { TurnosComponent } from './turnos/turnos.component';
   exports: [
     UsuariosComponent,
     ListadoEspecialistasComponent,
-    ListadoPacientesComponent
+    ListadoPacientesComponent,
+    TurnosComponent,
+    SolicitarTurnoComponent,
   ]
 })
 export class AdministradorModule { }

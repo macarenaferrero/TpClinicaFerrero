@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row" *ngIf="visible" [@fadeInOut]>
+      <div class="col-12">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <h2>Usuario</h2>
+              <span class="badge badge-secondary badge-pill">3</span>
+          </h4>
+          <div class="row">
+              <div class="form-group col-md-4">
+                  <h4>Nombre: {{usuario.nombre}}</h4>
+                  <h4>Apellido: {{usuario.apellido}}</h4>
+                  <h4>Email: {{usuario.email}}</h4>
+                  <h4>
+                      Tipo Usuario: {{usuario.tipoUsuario}} <div *ngIf="isAdmin">Administrador</div>
+                      <div *ngIf="isEspecialista">Especialista</div>
+                      <div *ngIf="isPaciente">Paciente</div>
+                  </h4>
+              </div>
+              <div class="form-group col-8">
+                  <div class="row">
+                      <div class="form-group col-md-4">
+                          <img [src]="usuario.imagen1">
+                      </div>
+                      <div class="form-group col-md-4" *ngIf="usuario.img2Url">
+                          <img [src]="usuario.imagen2">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <app-mis-horarios *ngIf="isEspecialista" [usuarioHorarios]="usuario"></app-mis-horarios>
+  <br>
+  <!-- <app-historia-clinica *ngIf="isPaciente"></app-historia-clinica> -->
+  <br>
+  <!-- <app-pdf-especialista *ngIf="usuario.especialista"></app-pdf-especialista> -->
+</div>
+
+<app-footer></app-footer>

@@ -151,4 +151,19 @@ getListadoAdministradores(): Observable<any>{
   return observable;
 }
 
+
+updatePacienteHorarios(pacienteModificado: Paciente): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const paciente = doc(this.coleccionPacientes, pacienteModificado.id);
+    updateDoc(paciente, {
+      horarios: pacienteModificado.horarios
+    })
+      .then(() => {
+        resolve(); // Se resuelve la promesa si la operación se completa correctamente
+      })
+      .catch((error) => {
+        reject(error); // Se rechaza la promesa si ocurre un error durante la operación
+      });
+  });
+}
 }

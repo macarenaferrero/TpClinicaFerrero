@@ -20,6 +20,8 @@ import { HomeModule } from './pages/home/home.module';
 import { AdministradorModule } from './pages/administrador/administrador.module';
 import { TurnoDetalleComponent } from './Components/turno-detalle/turno-detalle.component';
 import { EncuestaComponent } from './Components/encuesta/encuesta.component';
+import { CaptchaComponent } from './Components/captcha/captcha.component';
+import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,6 @@ import { EncuestaComponent } from './Components/encuesta/encuesta.component';
     HomeRoutingModule,
     AdministradorRoutingModule,
     HomeModule,
-    AdministradorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

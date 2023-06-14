@@ -17,6 +17,10 @@ import { AltaEspecialidadComponent } from 'src/app/Components/alta-especialidad/
 import { MisTurnosComponent } from '../../paciente/mis-turnos/mis-turnos.component';
 import { TurnoDetalleComponent } from 'src/app/Components/turno-detalle/turno-detalle.component';
 import { EncuestaComponent } from 'src/app/Components/encuesta/encuesta.component';
+import { CaptchaComponent } from 'src/app/Components/captcha/captcha.component';
+import { MiPerfilComponent } from 'src/app/Components/mi-perfil/mi-perfil.component';
+import { Administrador } from 'src/app/Clases/administrador';
+import { AdministradorModule } from '../administrador/administrador.module';
 
 
 
@@ -27,7 +31,8 @@ import { EncuestaComponent } from 'src/app/Components/encuesta/encuesta.componen
     ListaEspecialidadesComponent,
     AltaEspecialidadComponent,
     TurnoDetalleComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    CaptchaComponent,
   ],
   imports: [
     CommonModule,
@@ -39,14 +44,16 @@ import { EncuestaComponent } from 'src/app/Components/encuesta/encuesta.componen
     HomeRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    SharedModule
+    SharedModule,
+
   ],
   exports: [
     CompleteProfileComponent,
     ListaEspecialidadesComponent,
     AltaEspecialidadComponent,
     TurnoDetalleComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    CaptchaComponent,
   ]
 })
 export class HomeModule { }

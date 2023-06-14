@@ -11,9 +11,10 @@ export class Paciente {
   imagen2?:string;
   isAdmin:boolean=false;
   isEspecialista:boolean=false;
+  horarios?:string;
 
   constructor(id:string,nombre:string, apellido:string, edad:number, dni:number, email:string, password:string,
-    obraSocial:string, imagen1:string, imagen2:string, isAdmin:boolean=false, isEspecialista:boolean=false){
+    obraSocial:string, imagen1:string, imagen2:string, isAdmin:boolean=false, isEspecialista:boolean=false, horarios:string){
       this.id = id;
       this.nombre = nombre;
       this.apellido = apellido;
@@ -24,5 +25,6 @@ export class Paciente {
       this.obraSocial = obraSocial;
       this.imagen1 = imagen1;
       this.imagen2 = imagen2;
+      this.horarios = horarios;
   }
 }

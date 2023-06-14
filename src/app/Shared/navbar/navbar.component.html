@@ -26,8 +26,8 @@
         <a class="nav-link active" routerLink="/administrador/turnos" *ngIf="isAdmin">Turnos</a>
         <a class="nav-link active" routerLink="/paciente/mis-turnos" *ngIf="isPaciente">Mis Turnos</a>
         <a class="nav-link active" routerLink="/especialista/mis-turnos" *ngIf="isEspecialista">Mis Turnos</a>
-        <a class="nav-link active" routerLink="/home/solicitar-turno">Solicitar Turno</a>
-        <a class="nav-link active" routerLink="/home/mi-perfil">Mi Perfil</a>
+        <a class="nav-link active" routerLink="/administrador/solicitar-turno" *ngIf="isAdmin || isPaciente">Solicitar Turno</a>
+        <a class="nav-link active" routerLink="/especialista/mi-perfil">Mi Perfil</a>
         <a class="nav-link active" routerLink="/home/pacientes">Pacientes</a>
       </div>
     </div>

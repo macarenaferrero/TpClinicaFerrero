@@ -4,18 +4,30 @@ import { MisTurnosEspecialistaComponent } from './mis-turnos-especialista/mis-tu
 import { SharedModule } from 'src/app/Shared/shared.module';
 import { EspecialistaRoutingModule } from './especialista-routing.module';
 import { HomeModule } from '../pages/home/home.module';
+import { MisHorariosComponent } from './mis-horarios/mis-horarios.component';
+import { MiPerfilComponent } from '../Components/mi-perfil/mi-perfil.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    MisTurnosEspecialistaComponent
+    MisTurnosEspecialistaComponent,
+    MisHorariosComponent,
+    MiPerfilComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     EspecialistaRoutingModule,
-    HomeModule
+    HomeModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  exports: [
+    MisTurnosEspecialistaComponent,
+    MisHorariosComponent,
+    MiPerfilComponent
   ]
 })
 export class EspecialistaModule { }

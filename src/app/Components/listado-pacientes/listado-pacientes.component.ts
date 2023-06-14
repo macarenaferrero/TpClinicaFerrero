@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Paciente } from 'src/app/Clases/paciente';
 
 @Component({
@@ -8,5 +8,5 @@ import { Paciente } from 'src/app/Clases/paciente';
 })
 export class ListadoPacientesComponent {
   @Input()  listadoPacientes?:Paciente[]=[];
-  pacienteAMostrar?: Paciente;
+  @Output() pacienteSeleccionado = new EventEmitter<Paciente>();
 }
