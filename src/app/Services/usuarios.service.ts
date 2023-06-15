@@ -162,13 +162,14 @@ getListadoAdministradores(): Observable<any>{
 }
 
 
-updatePacienteHorarios(pacienteModificado: Paciente): Promise<void> {
+updateEspecialistaHorarios(especialistaModificado: Especialista): Promise<void> {
   return new Promise((resolve, reject) => {
-    const paciente = doc(this.coleccionPacientes, pacienteModificado.id);
-    updateDoc(paciente, {
-      horarios: pacienteModificado.horarios
+    const especialistas = doc(this.coleccionEspecialistas, especialistaModificado.id);
+    updateDoc(especialistas, {
+      horarios: especialistaModificado.horarios
     })
-      .then(() => {
+    .then(() => {
+        console.log(especialistaModificado.horarios);
         resolve(); // Se resuelve la promesa si la operación se completa correctamente
       })
       .catch((error) => {

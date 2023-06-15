@@ -6,7 +6,34 @@
     <br />
     <div class="question">
       <p>Tipo registro<span class="required">*</span></p>
-      <div class="question-answer">
+      <div class="question-answer" formControlName="tipo" required>
+        <div class="row">
+          <div class="col-12">
+            <button class="btn btn-success image-button" id="btnRegistro" type="button" (click)="DatosAdministrador()" *ngIf="isAdministrador">
+              <div class="image-container">
+                <img id="imgBtnRegistro" src="../../../assets/admin.png">
+              </div>
+            </button>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-success image-button" id="btnRegistro" type="button" (click)="DatosEspecialista()">
+              <div class="image-container">
+                <img id="imgBtnRegistro" src="../../../assets/enfermera.jpg">
+              </div>
+            </button>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-success image-button" id="btnRegistro" type="button" (click)="DatosPaciente()">
+              <div class="image-container">
+                <img id="imgBtnRegistro" src="../../../assets/mujer.jpg">
+              </div>
+            </button>
+          </div>
+        </div>
+
+<!--
+
+
         <input type="radio" value="paciente" id="paciente" name="tipo" formControlName="tipo" required />
         <label for="paciente" class="radio" (click)="DatosPaciente()"><span>Paciente</span></label>
 
@@ -15,9 +42,15 @@
         <div *ngIf="isAdministrador">
           <input type="radio" value="administrador" id="administrador" name="tipo" required/>
           <label for="administrador" class="radio" (click)="DatosAdministrador()"><span>Administrador</span></label>
-        </div>
+        </div> -->
       </div>
       <span *ngIf="registro.get('tipo')?.hasError('required') && registro.get('tipo')?.touched"  class="text-danger form-floating">Debe seleccionar una opción</span>
+
+
+
+
+
+
     </div>
     <div *ngIf="isPaciente || isEspecialista || crearAdministrador">
     <div class="item">
@@ -60,7 +93,7 @@
     </div>
     <div class="item">
       <p>Imagen Perfil 1</p>
-      <input type="file" name="imagen1" accept="image/*" formControlName="imagen1">
+      <input type="file" name="imagen1"  (change)="selectFile($event)" formControlName="imagen1">
       <span *ngIf="registro.get('imagen1')?.hasError('required') && registro.get('imagen1')?.touched"  class="text-danger form-floating">La imagen es requerida</span>
     </div>
     <div class="btn-block" *ngIf="crearAdministrador">
@@ -70,7 +103,7 @@
     <div *ngIf="isPaciente">
       <div class="item">
         <p>Imagen Perfil 2</p>
-        <input type="file" name="foto" accept="image/*" formControlName="imagen2">
+        <input type="file" name="imagen2"  (change)="selectFile2($event)" formControlName="imagen2">
         <span *ngIf="registro.get('imagen2')?.hasError('required') && registro.get('imagen2')?.touched"  class="text-danger form-floating">La imagen es requerida</span>
       </div>
       <div class="item">
@@ -80,7 +113,14 @@
       </div>
       <br />
       <div class="btn-block">
+        <div class="mb-3">
+          <app-captcha (resultadoCaptcha)="resolvedPropio($event)"></app-captcha>
+      </div>
+      <hr class="mb-4">
+      <div [hidden]="!captchaPropio">
         <button type="submit" [disabled]="!registro.valid" (click)="RegistrarPaciente()">Completar registro</button>
+
+      </div>
       </div>
     </div>
     <div class="question" *ngIf="isEspecialista">
@@ -89,7 +129,15 @@
       <app-alta-especialidad></app-alta-especialidad>
       <br />
       <div class="btn-block">
+
+        <div class="mb-3">
+          <app-captcha (resultadoCaptcha)="resolvedPropio($event)"></app-captcha>
+      </div>
+      <hr class="mb-4">
+      <div [hidden]="!captchaPropio">
         <button type="submit" (click)="RegistrarEspecialista()">Completar registro</button>
+
+      </div>
       </div>
     </div>
   </form>

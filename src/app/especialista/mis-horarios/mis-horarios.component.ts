@@ -1,7 +1,10 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
+import { Especialista } from 'src/app/Clases/especialista';
 import { Horarios } from 'src/app/Clases/horarios';
 import { Paciente } from 'src/app/Clases/paciente';
 import { Usuario } from 'src/app/Clases/usuario';
@@ -25,9 +28,8 @@ import { UsuariosService } from 'src/app/Services/usuarios.service';
 })
 export class MisHorariosComponent implements OnInit {
 
- //@Output() usuarioRegistrado: EventEmitter<any> = new EventEmitter<any>();
  formulario!: FormGroup;
- @Input() usuarioHorarios!: Usuario;
+ @Input() usuarioHorarios!: Especialista;
  especialidad!: string;
  horario!: Horarios;
  horarioAux!: Horarios;
@@ -38,10 +40,12 @@ export class MisHorariosComponent implements OnInit {
  captchaPropio:boolean = false;
  pacientes:any;
  paciente?:Paciente;
+ especialista?:Especialista;
  especialidades:any;
  especialistas:any;
 
- constructor(public fv: FormBuilder, private usuarioSvc: UsuariosService) {
+ constructor(public fv: FormBuilder, private usuarioSvc: UsuariosService,
+   private toastr: ToastrService, private afAuth:AngularFireAuth) {
    this.formulario = fv.group({
      especialidad: ["", Validators.required],
      lunesHoraDesde: ["", [ this.validarMinutos, this.validarHora]],
@@ -62,56 +66,24 @@ export class MisHorariosComponent implements OnInit {
  }
 
  ngOnInit(): void {
-  this.usuarioSvc.getListadoPacientes().subscribe((pacientes:any)=>{
-    this.pacientes=pacientes;
-    this.pacientes.forEach((paciente:any) => {
-      if(paciente.email == this.usuario.email){
-        this.paciente = paciente;
-      }
-    });
-  });
+    this.afAuth.currentUser.then(user=>{
+      if(user){
+         this.usuarioSvc.getListadoEspecialistas().subscribe((especialistas:any)=>{
+            this.especialistas=especialistas;
+            this.especialistas.forEach((especialista:any) => {
+              if(especialista.email == user.email){
+                this.especialista = especialista;
+                console.log(this.especialista);
+              }
+            });
+          });
 
-  this.usuarioSvc.getListadoEspecialistas().subscribe((especialistas:any)=>{
-    this.especialistas=especialistas;
-    this.especialistas.forEach((especialista:any) => {
-      if(especialista.email == this.usuario.email){
-        this.especialidades=especialista.especialidades;
-      }
-    });
-  });
-}
-
-
- cargarTurnos() {
-  // this.turnoSvc.getTurnos().subscribe(turnos => {
-  //   this.turnosOcupados = turnos;
-  // });
-
-  this.horarios.snapshotChanges().pipe(
-    map( (data: any) => {
-      this.horariosUsuario = new Array<Horarios>();
-      data.map((item: any) => {
-        if(item.payload.doc.data().idEspecialista == this.usuario.id){
-          console.log(item);
-          //var turno = item;
-          var horario = new Horarios();
-          //horario.id = item.payload.doc.id;
-          horario.idEspecialista = item.payload.doc.data().idEspecialista;
-          horario.horarioLunes = item.payload.doc.data().horarioLunes;
-          horario.horarioMartes = item.payload.doc.data().horarioMartes;
-          horario.horarioMiercoles = item.payload.doc.data().horarioMiercoles;
-          horario.horarioJueves = item.payload.doc.data().horarioJueves;
-          horario.horarioViernes = item.payload.doc.data().horarioViernes;
-          horario.horarioSabado = item.payload.doc.data().horarioSabado;
-
-          console.log(this.horariosUsuario);
 
         }
-      })
-    })
-  ).subscribe();
-  console.log(this.horariosUsuario);
+    });
 }
+
+
 
  validarMinutos(control: AbstractControl) {
    const nombre = control.value;
@@ -165,7 +137,6 @@ export class MisHorariosComponent implements OnInit {
 
 
  registrar() {
-   console.log(this.formulario);
    this.horario = new Horarios();
    this.horario.horarioLunes = [{ desde: this.formulario.controls['lunesHoraDesde'].value, hasta: this.formulario.controls['lunesHoraHasta'].value }];
    this.horario.horarioMartes = [{ desde: this.formulario.controls['martesHoraDesde'].value, hasta: this.formulario.controls['martesHoraHasta'].value }];
@@ -173,12 +144,24 @@ export class MisHorariosComponent implements OnInit {
    this.horario.horarioJueves = [{ desde: this.formulario.controls['juevesHoraDesde'].value, hasta: this.formulario.controls['juevesHoraHasta'].value }];
    this.horario.horarioViernes = [{ desde: this.formulario.controls['viernesHoraDesde'].value, hasta: this.formulario.controls['viernesHoraHasta'].value }];
    this.horario.horarioSabado = [{ desde: this.formulario.controls['sabadoHoraDesde'].value, hasta: this.formulario.controls['sabadoHoraHasta'].value }];
-   this.horariosUsuario = this.horario;
-   this.paciente!.horarios = this.horariosUsuario;
 
-   this.usuarioSvc.updatePacienteHorarios(this.paciente!);
-   this.formulario.reset();
- }
+   if (this.horario) {
+    const horariosJSON = JSON.stringify(this.horario); // Convertir el objeto a formato JSON
+
+    this.especialista!.horarios = horariosJSON;
+    this.usuarioSvc.updateEspecialistaHorarios(this.especialista!) // Pasar this.especialista! al método de actualización
+      .then(() => {
+        this.toastr.success('Horarios guardados exitosamente.', '¡Éxito!');
+        this.formulario.reset();
+        window.scroll(0, 0);
+      })
+      .catch((error) => {
+        this.toastr.error('No se pudieron guardar los horarios.', '¡Error!');
+      });
+  } else {
+    console.error('No se ha inicializado correctamente el objeto Horarios.');
+  }
+}
 
  resolvedPropio(captcha: boolean){
   this.captchaPropio = captcha;

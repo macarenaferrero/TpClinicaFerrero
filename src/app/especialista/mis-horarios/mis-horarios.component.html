@@ -9,7 +9,7 @@
                       <select class="custom-select custom-select-lg form-control mb-3" formControlName="especialidad"
                           [(ngModel)]="especialidad">
                           <option selected value="">Selecciona una opción</option>
-                          <option *ngFor="let especialidad of especialidades" [value]="especialidad">
+                          <option *ngFor="let especialidad of usuarioHorarios.especialidades" [value]="especialidad">
                               {{especialidad}}</option>
                       </select>
                       <span class="text-danger"

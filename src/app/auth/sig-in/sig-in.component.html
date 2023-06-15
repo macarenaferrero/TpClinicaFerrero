@@ -1,4 +1,4 @@
-<div class="container" id="container" [ngClass]="{'right-panel-active': isSignIn}" *ngIf="!loading">
+<div class="container" id="container" [ngClass]="{'right-panel-active': isSignIn}" *ngIf="!loading" >
 	<div class="form-container sign-up-container">
 		<form [formGroup]="createAccount">
 			<h1>Crear Cuenta</h1>
@@ -27,8 +27,8 @@
       <span *ngIf="inicioSesion.get('password')?.hasError('required') && inicioSesion.get('password')?.touched"  class="text-danger form-floating">La contraseña es requerida</span>
       <span *ngIf="inicioSesion.get('password')?.hasError('minLength') && inicioSesion.get('password')?.touched"  class="text-danger form-floating">La contraseña debe contener mínimo 6 carácteres</span>
 			<button type="submit" (click)="login()">Iniciar Sesión</button>
-			<button type="submit" (click)="accesoRapido()">Acceso Rápido</button>
 		</form>
+
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
@@ -43,7 +43,44 @@
 				<button class="ghost" (click)="SignInActive()" id="signUp">Crear cuenta</button>
 			</div>
 		</div>
+
 	</div>
+  <div class="container" style="position: absolute; top: 0; right: 0;">
+    <div class="col">
+      <div class="form-group col-2">
+        <button type="button" class="btn" id="btnLogs" (click)="accesoRapidoPaciente1()">
+          <img id="imgBotonesLog" src="../../../assets/mujer3.jpg">
+        </button>
+      </div>
+      <div class="form-group col-2">
+        <button type="button" class="btn" id="btnLogs" (click)="accesoRapidoPaciente2()">
+          <img id="imgBotonesLog" src="../../../assets/mujer2.jpg">
+        </button>
+      </div>
+      <div class="form-group col-2">
+        <button type="button" class="btn" id="btnLogs" (click)="accesoRapidoPaciente3()">
+          <img id="imgBotonesLog" src="../../../assets/mujer.jpg">
+        </button>
+      </div>
+      <div class="form-group col-2">
+        <button type="button" class="btn" id="btnLogs" (click)="accesoRapidoEspecialista()">
+          <img id="imgBotonesLog" src="../../../assets/hombre.jpg">
+        </button>
+      </div>
+      <div class="form-group col-2">
+        <button type="button" class="btn" id="btnLogs" (click)="accesoRapidoEspecialista2()">
+          <img id="imgBotonesLog" src="../../../assets/hombre2.png">
+        </button>
+      </div>
+      <div class="form-group col-2">
+        <button type="button" class="btn" id="btnLogs" (click)="accesoRapidoAdmin()">
+          <img id="imgBotonesLog" src="../../../assets/admin.png">
+        </button>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 <app-spinner *ngIf="loading"></app-spinner>
 

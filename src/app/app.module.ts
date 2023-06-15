@@ -13,7 +13,6 @@ import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { RouterModule } from '@angular/router';
-import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { SharedModule } from './Shared/shared.module';
 import { AdministradorRoutingModule } from './pages/administrador/administrador-routing.module';
 import { HomeModule } from './pages/home/home.module';
@@ -24,11 +23,13 @@ import { CaptchaComponent } from './Components/captcha/captcha.component';
 import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
 import { EstadoDirective } from './directivas/estado.directive';
 import { ResaltarDirective } from './directivas/resaltar.directive';
+import { HomeRoutingModule } from './pages/home/home-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigInComponent,
+
 
 
   ],

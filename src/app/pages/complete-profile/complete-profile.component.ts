@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Administrador } from 'src/app/Clases/administrador';
 import { Especialista } from 'src/app/Clases/especialista';
+import { Imagen } from 'src/app/Clases/imagen';
 import { Paciente } from 'src/app/Clases/paciente';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 
@@ -14,6 +15,7 @@ import { UsuariosService } from 'src/app/Services/usuarios.service';
   styleUrls: ['./complete-profile.component.css']
 })
 export class CompleteProfileComponent implements OnInit{
+captchaPropio:boolean = false;
 isEspecialista:boolean= false;
 isPaciente:boolean= false;
 registro:FormGroup;
@@ -24,6 +26,8 @@ especialidadSeleccionada: any = [];
 especialidadesSeleccionadas: any = [];
 isAdministrador:boolean=false;
 crearAdministrador:boolean=false;
+obtengoFile!: string;
+obtengoFile2!: string;
 
 constructor(private fb:FormBuilder, private toastr: ToastrService, private router: Router,
   private afAuth:AngularFireAuth, public usuarioService : UsuariosService, private route:ActivatedRoute) {
@@ -82,6 +86,19 @@ DatosAdministrador(){
 }
 
 RegistrarPaciente(){
+
+  // const file1 = this.selectedFiles.item(0);
+  // console.log(this.selectedFiles.item(0));
+  // //this.selectedFiles = undefined;
+  // if(file1 != null){
+  //   this.imagen1 = new Imagen(file1);
+  // }
+
+  // const file2 = this.selectedFiles2.item(0);
+  // console.log(this.selectedFiles2.item(0));
+  // if(file2 != null){
+  //   this.imagen2 = new Imagen(file2);
+  // }
 const datoGrabar: Paciente = {
   nombre: this.registro.get('nombre')?.value,
   apellido: this.registro.get('apellido')?.value,
@@ -89,9 +106,9 @@ const datoGrabar: Paciente = {
   dni: this.registro.get('dni')?.value,
   email: this.registro.get('email')?.value,
   password: this.registro.get('password')?.value,
-  imagen1: this.registro.get('imagen1')?.value,
+  imagen1: this.obtengoFile,
   obraSocial: this.registro.get('obraSocial')?.value,
-  imagen2: this.registro.get('imagen2')?.value,
+  imagen2: this.obtengoFile2,
   isAdmin:false,
   isEspecialista:false,
 }
@@ -120,6 +137,11 @@ this.usuarioService.crearPaciente(datoGrabar).then(()=>{
 
 
 RegistrarEspecialista(){
+  // const imagen1 = this.selectedFiles.item(0);
+  //   console.log(this.selectedFiles.item(0));
+  //   if(imagen1 != null){
+  //     this.imagen1 = new Imagen(imagen1);
+  //   }
   const datoGrabar: Especialista = {
     nombre: this.registro.get('nombre')?.value,
     apellido: this.registro.get('apellido')?.value,
@@ -127,7 +149,7 @@ RegistrarEspecialista(){
     dni: this.registro.get('dni')?.value,
     email: this.registro.get('email')?.value,
     password: this.registro.get('password')?.value,
-    imagen1: this.registro.get('imagen1')?.value,
+    imagen1: this.obtengoFile,
     especialidades: this.especialidadesSeleccionadas,
     isHabilitado:false,
     isAdmin:false,
@@ -157,6 +179,11 @@ RegistrarEspecialista(){
   }
 
   RegistrarAdministrador(){
+    // const imagen1 = this.selectedFiles.item(0);
+    // console.log(this.selectedFiles.item(0));
+    // if(imagen1 != null){
+    //   this.imagen1 = new Imagen(imagen1);
+    // }
     const datoGrabar: Administrador = {
       nombre: this.registro.get('nombre')?.value,
       apellido: this.registro.get('apellido')?.value,
@@ -164,7 +191,7 @@ RegistrarEspecialista(){
       dni: this.registro.get('dni')?.value,
       email: this.registro.get('email')?.value,
       password: this.registro.get('password')?.value,
-      imagen1: this.registro.get('imagen1')?.value,
+      imagen1: this.obtengoFile,
       isAdmin:this.isAdministrador,
       isEspecialista:false
     }
@@ -198,5 +225,25 @@ RegistrarEspecialista(){
     this.especialidadesSeleccionadas.push(this.especialidadSeleccionada.especialidadData);
     this.registro.controls['especialidades'].setValue(this.especialidadesSeleccionadas);
   }
+
+  resolvedPropio(captcha: boolean){
+    this.captchaPropio = captcha;
+  }
+
+
+
+  selectFile(event:any): void {
+    const file = event.target.files[0];
+    this.obtengoFile = "../../assets/"+file.name;
+    console.log(this.obtengoFile);
+
+  }
+  selectFile2(event: any): void {
+    const file = event.target.files[0];
+    this.obtengoFile2 = "../../assets/"+file.name;
+    console.log(this.obtengoFile);
+
+  }
+
 
 }

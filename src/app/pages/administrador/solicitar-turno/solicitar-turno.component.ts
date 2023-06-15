@@ -192,7 +192,7 @@ export class SolicitarTurnoComponent {
       this.fechaElegida = null;
       this.horaElegida = "";
       this.toastr.success('El turno se ha registrado correctamente', 'Turno registrado');
-      this.router.navigate(['/home']);
+      window.scrollTo(0, 0);
     }
 
   }

@@ -13,13 +13,13 @@ import { UsuariosService } from 'src/app/Services/usuarios.service';
 export class ListadoEspecialistasComponent {
   @Input()  listadoEspecialistas?:Especialista[]=[];
   @Output() especialistaSeleccionado = new EventEmitter<Especialista>();
-  isSolicitarTurno:boolean=true;
+  isSolicitarTurno:boolean=false;
   especialista!:Especialista;
 
   constructor(private afAuth:AngularFireAuth,public especilistaModificado:UsuariosService, private toastr:ToastrService, private router:Router) {
     const currentUrl = this.router.url;
     console.log(currentUrl);
-    if(currentUrl == '/solicitar-turno'){
+    if(currentUrl == '/administrador/solicitar-turno'){
       this.isSolicitarTurno=true;
     }
   }

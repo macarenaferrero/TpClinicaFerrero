@@ -26,6 +26,7 @@ administradores:Administrador[]=[];
 isHabilitado:boolean=true;
 usuarioAIngresar:any;
 
+
 constructor(private fb:FormBuilder, private afAuth:AngularFireAuth, private router:Router, private toastr:ToastrService,private usuariosService:UsuariosService) {
   this.createAccount = this.fb.group({
     email:['',[Validators.required,Validators.email]],
@@ -87,9 +88,44 @@ login(){
   });
 }
 
-accesoRapido(){
+accesoRapidoAdmin(){
   this.inicioSesion.setValue({
     email: "tkd05413@omeie.com",
+    password:"123456"
+  });
+}
+
+accesoRapidoPaciente1(){
+  this.inicioSesion.setValue({
+    email: "ege44800@zslsz.com",
+    password:"123456"
+  });
+}
+
+accesoRapidoPaciente2(){
+  this.inicioSesion.setValue({
+    email: "wde05627@nezid.com",
+    password:"123456"
+  });
+}
+
+accesoRapidoPaciente3(){
+  this.inicioSesion.setValue({
+    email: "ybabjicwnhqgtijowq@bbitf.com",
+    password:"123456"
+  });
+}
+
+accesoRapidoEspecialista(){
+  this.inicioSesion.setValue({
+    email: "vum97912@omeie.com",
+    password:"123456"
+  });
+}
+
+accesoRapidoEspecialista2(){
+  this.inicioSesion.setValue({
+    email: "jja10313@zbock.com",
     password:"123456"
   });
 }

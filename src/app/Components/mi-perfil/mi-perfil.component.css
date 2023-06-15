@@ -1,0 +1,5 @@
+.square-image {
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  height: auto; /* La altura se ajustará proporcionalmente al ancho */
+  object-fit: cover; /* Para recortar las imágenes y ajustarlas al contenedor */
+}

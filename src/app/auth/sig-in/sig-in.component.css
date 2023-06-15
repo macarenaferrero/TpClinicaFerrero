@@ -253,3 +253,27 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+
+
+
+#imgBotonesLog{
+  height: 40px;
+  width: 40px;
+  display:block;
+  margin:auto;
+  border-radius: 2rem;
+  background-color: rgb(160, 255, 160);
+
+  /*background-image: url('../../../assets/ahorcado/ahorcado.jpg');*/
+}
+
+#btnLogs{
+  height: 70px;
+  width: 70px;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left:5px;
+  padding-right:5px;
+  border-color: black;
+
+}
