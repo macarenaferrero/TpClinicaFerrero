@@ -16,6 +16,7 @@ coleccionEspecialidades: CollectionReference<DocumentData> = collection(this.fir
 coleccionAdministradores: CollectionReference<DocumentData> = collection(this.firestore, 'administradores');
 especialidades!: Observable<any[]>;
 especialistas!: Observable<any[]>;
+especialistasPorEspecialidad!: Array<any>;
 
 constructor(private firestore: Firestore) {
   this.especialidades = collectionData(this.coleccionEspecialidades);
@@ -78,6 +79,15 @@ updateEspecialista(especialistaModificado: Especialista): Promise<void> {
 getListadoEspecialistas(): Observable<any>{
   const observable = collectionData(this.coleccionEspecialistas);
   return observable;
+}
+
+getEspecialistasPorEspecialidad(especialidad: string): Array<any>{
+  this.especialistas.forEach((item:any) => {
+    if (item.especialidades === especialidad) {
+      this.especialistasPorEspecialidad.push(item);
+    }
+  });
+  return this.especialistasPorEspecialidad;
 }
 
 verificarAprobacionAdmin(especialista: Especialista) {

@@ -1,6 +1,6 @@
 
-<p>Especialidad<span class="required">*</span></p>
-<div class="" *ngFor="let especialidad of especialidades">
+<h4>Especialidad<span class="required">*</span></h4>
+<div class="row" *ngFor="let especialidad of especialidades">
   <button type="button" class="btn btn-primary mt-2" (click)="asignarEspecialidad(especialidad)">{{especialidad.especialidadData}} </button>
 </div>
 

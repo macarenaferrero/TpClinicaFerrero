@@ -4,6 +4,7 @@ import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
 import { SharedModule } from 'src/app/Shared/shared.module';
 import { PacienteRoutingModule } from './paciente-routing.module';
 import { HomeModule } from '../pages/home/home.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,6 +16,7 @@ import { HomeModule } from '../pages/home/home.module';
     CommonModule,
     SharedModule,
     PacienteRoutingModule,
+    FormsModule,
     HomeModule
   ],exports:[
     MisTurnosComponent

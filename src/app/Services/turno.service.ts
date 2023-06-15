@@ -37,7 +37,7 @@ export class TurnoService {
       const turnos = doc(this.coleccionTurnos);
       setDoc(turnos, {
         id: turnos.id,
-      turnoData
+      ...turnoData
       })
         .then(() => {
           resolve();
@@ -178,11 +178,11 @@ export class TurnoService {
     return this.turnosPorDia;
   }
 
-  getTurnosPorPaciente(paciente:Paciente){
-    // return this.db.collection<any>("turnos").valueChanges({idField: "id"});
+  getTurnosPorPaciente(paciente:Paciente): Array<any>{
+    console.log("Dentro turno service, turnos: "+ this.turnos);
     this.turnos.forEach(turno => {
       if(turno.idPaciente == paciente.id){
-        this.turnosPorEspecialidad.push(turno);
+        this.turnosPorPaciente.push(turno);
       }
     });
     return this.turnosPorPaciente;

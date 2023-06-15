@@ -22,11 +22,14 @@ import { TurnoDetalleComponent } from './Components/turno-detalle/turno-detalle.
 import { EncuestaComponent } from './Components/encuesta/encuesta.component';
 import { CaptchaComponent } from './Components/captcha/captcha.component';
 import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
+import { EstadoDirective } from './directivas/estado.directive';
+import { ResaltarDirective } from './directivas/resaltar.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigInComponent,
+
 
   ],
   imports: [

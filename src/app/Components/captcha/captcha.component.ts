@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-captcha',
   templateUrl: './captcha.component.html',
   styleUrls: ['./captcha.component.css']
 })
-export class CaptchaComponent {
+export class CaptchaComponent implements OnInit {
 
   permitted_chars = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
   string_length = 6;
@@ -58,5 +58,6 @@ export class CaptchaComponent {
   //   this.captcha = event;
   //   //this.resultadoCaptcha.emit(true);
   // }
+
 
 }

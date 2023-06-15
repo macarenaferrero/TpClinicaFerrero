@@ -15,6 +15,7 @@ import { TurnosComponent } from './turnos/turnos.component';
 import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
 import { MiPerfilComponent } from 'src/app/Components/mi-perfil/mi-perfil.component';
 import { MisHorariosComponent } from 'src/app/especialista/mis-horarios/mis-horarios.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -32,6 +33,7 @@ import { MisHorariosComponent } from 'src/app/especialista/mis-horarios/mis-hora
     AdministradorRoutingModule,
     RouterModule,
     HomeModule,
+    FormsModule,
   ],
   exports: [
     UsuariosComponent,

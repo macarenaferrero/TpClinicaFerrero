@@ -13,9 +13,25 @@ import { UsuariosService } from 'src/app/Services/usuarios.service';
 export class ListadoEspecialistasComponent {
   @Input()  listadoEspecialistas?:Especialista[]=[];
   @Output() especialistaSeleccionado = new EventEmitter<Especialista>();
+  isSolicitarTurno:boolean=true;
+  especialista!:Especialista;
+
+  constructor(private afAuth:AngularFireAuth,public especilistaModificado:UsuariosService, private toastr:ToastrService, private router:Router) {
+    const currentUrl = this.router.url;
+    console.log(currentUrl);
+    if(currentUrl == '/solicitar-turno'){
+      this.isSolicitarTurno=true;
+    }
+  }
+
+  enviarEspecialista(especialista:Especialista){
+    console.log(especialista);
+
+    this.especialistaSeleccionado.emit(especialista);
+  }
 
 
-  constructor(private afAuth:AngularFireAuth,public especilistaModificado:UsuariosService, private toastr:ToastrService, private router:Router) { }
+
 
   updateEspecialista(especialista:Especialista){
     const datoGrabar: Especialista = {

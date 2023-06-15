@@ -27,8 +27,6 @@ import { UsuariosService } from 'src/app/Services/usuarios.service';
       ])
     ]),
   ]
-
-
 })
 
 export class MiPerfilComponent{

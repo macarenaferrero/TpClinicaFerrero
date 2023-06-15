@@ -7,6 +7,13 @@ import { Paciente } from 'src/app/Clases/paciente';
   styleUrls: ['./listado-pacientes.component.css']
 })
 export class ListadoPacientesComponent {
+  paciente!:Paciente;
   @Input()  listadoPacientes?:Paciente[]=[];
   @Output() pacienteSeleccionado = new EventEmitter<Paciente>();
+
+  enviarPaciente(paciente: Paciente){
+    console.log(paciente);
+
+    this.pacienteSeleccionado.emit(paciente);
+  }
 }

@@ -1,13 +1,12 @@
 <app-navbar></app-navbar>
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-4">
       <app-lista-especialidades  [especialidades]="especialidades" (especialidadSeleccionada)="asignarEspecialidadSeleccionada($event)"></app-lista-especialidades>
   </div>
   <div class="col-md-8">
       <h3 *ngIf="especialidadSeleccionada">Especialistas</h3>
-      <app-listado-especialistas [listadoEspecialistas]="especialistasEspecialidad" (especialistaSeleccionado)="asignarEspecialista($event)" *ngIf="especialidadSeleccionada">
-      </app-listado-especialistas>
+      <app-listado-especialistas [listadoEspecialistas]="especialistasEspecialidad" (especialistaSeleccionado)="asignarEspecialista($event)" *ngIf="especialidadSeleccionada"></app-listado-especialistas>
   </div>
 </div>
 
@@ -41,6 +40,57 @@
           <button class="btn btn-success" (click)="registrarTurno()">Enviar Turno</button>
       </div>
   </div>
-</div>
+</div> -->
+
+
+<main>
+  <div class="container py-4">
+    <header class="pb-3 mb-4">
+      <h1 class="display-5 fw-bold">Administración de turnos</h1>
+    </header>
+
+    <div class="p-5 mb-4 bg-body-tertiary border rounded-3">
+      <div class="container-fluid py-1">
+        <app-lista-especialidades  [especialidades]="especialidades" (especialidadSeleccionada)="asignarEspecialidadSeleccionada($event)"></app-lista-especialidades>
+        <br/>
+        <h4 *ngIf="especialidadSeleccionada">Especialistas</h4>
+        <app-listado-especialistas [listadoEspecialistas]="especialistasEspecialidad" (especialistaSeleccionado)="asignarEspecialista($event)" *ngIf="especialidadSeleccionada"></app-listado-especialistas>
+        <br/>
+        <h4 *ngIf="!isPaciente">Pacientes</h4>
+        <app-listado-pacientes  *ngIf="!isPaciente" [listadoPacientes]="pacientes" (pacienteSeleccionado)="enviarUsuarioSeleccionado($event)"></app-listado-pacientes>
+      </div>
+    </div>
+
+
+    <div class="row align-items-md-stretch" *ngIf="especialistaSeleccionado">
+      <div class="col-md-12">
+        <h5>Seleccionar fecha</h5>
+        <div class="h-100 p-5 bg-body-tertiary row">
+          <div class="form-group col-md-2" *ngFor="let fecha of turnosDisponibles">
+            <button class="btn btn-secondary mb-2" (click)="mostrarHorarios(fecha)">{{fecha.row_date.day}}/{{fecha.row_date.month}}/{{fecha.row_date.year}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div *ngIf="fechaElegida">
+        <h5>Horarios disponibles para {{fechaElegida.row_date.day}}/{{fechaElegida.row_date.month}}/{{fechaElegida.row_date.year}}</h5>
+        <div class="h-100 p-5 bg-body-tertiary row">
+          <div class="form-group col-md-1" *ngFor="let hora of fechaElegida.row_date.hours">
+            <button class="btn btn-secondary mb-2" (click)="fechaTurnoElegido(hora)" *ngIf="hora">{{hora}}</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+          <app-captcha (resultadoCaptcha)="resolvedPropio($event)"></app-captcha>
+          <div class="form-group col-md-2" [hidden]="!captchaPropio">
+            <button class="btn btn-success" (click)="registrarTurno()">Confirmar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</main>
+
+
 
 <app-footer></app-footer>

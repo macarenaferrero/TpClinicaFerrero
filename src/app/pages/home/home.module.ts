@@ -11,7 +11,6 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/Shared/shared.module';
-import { CompleteProfileComponent } from '../complete-profile/complete-profile.component';
 import { ListaEspecialidadesComponent } from 'src/app/Components/lista-especialidades/lista-especialidades.component';
 import { AltaEspecialidadComponent } from 'src/app/Components/alta-especialidad/alta-especialidad.component';
 import { MisTurnosComponent } from '../../paciente/mis-turnos/mis-turnos.component';
@@ -21,6 +20,12 @@ import { CaptchaComponent } from 'src/app/Components/captcha/captcha.component';
 import { MiPerfilComponent } from 'src/app/Components/mi-perfil/mi-perfil.component';
 import { Administrador } from 'src/app/Clases/administrador';
 import { AdministradorModule } from '../administrador/administrador.module';
+import { ResaltarDirective } from 'src/app/directivas/resaltar.directive';
+import { EstadoDirective } from 'src/app/directivas/estado.directive';
+import { FilterEspecialistaPipe } from 'src/app/pipes/filter-especialista.pipe';
+import { FilterPacientePipe } from 'src/app/pipes/filter-paciente.pipe';
+import { FilterTurnosPipe } from 'src/app/pipes/filter-turnos.pipe';
+import { CompleteProfileComponent } from '../complete-profile/complete-profile.component';
 
 
 
@@ -33,6 +38,11 @@ import { AdministradorModule } from '../administrador/administrador.module';
     TurnoDetalleComponent,
     EncuestaComponent,
     CaptchaComponent,
+    EstadoDirective,
+    ResaltarDirective,
+    FilterEspecialistaPipe,
+    FilterPacientePipe,
+    FilterTurnosPipe,
   ],
   imports: [
     CommonModule,
@@ -54,6 +64,11 @@ import { AdministradorModule } from '../administrador/administrador.module';
     TurnoDetalleComponent,
     EncuestaComponent,
     CaptchaComponent,
+    EstadoDirective,
+    ResaltarDirective,
+    FilterEspecialistaPipe,
+    FilterPacientePipe,
+    FilterTurnosPipe,
   ]
 })
 export class HomeModule { }

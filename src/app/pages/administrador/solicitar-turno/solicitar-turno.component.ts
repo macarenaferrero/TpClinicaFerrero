@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { Administrador } from 'src/app/Clases/administrador';
 import { Especialista } from 'src/app/Clases/especialista';
 import { Paciente } from 'src/app/Clases/paciente';
 import { Turno } from 'src/app/Clases/turno';
@@ -32,7 +34,7 @@ export class SolicitarTurnoComponent {
   mostrarHora = false;
   fechaElegida: any;
   horaElegida!: string;
-  usuario: Usuario = new Usuario();
+  usuario: any;
   turnosDisponibles: any[] = [];
   listaUsuarios: Usuario[] = [];
   email!: string;
@@ -43,40 +45,63 @@ export class SolicitarTurnoComponent {
   isPaciente:boolean=false;
   isEspecialista:boolean=false;
   usuarioLogueado:any;
+  administradores:Administrador[]=[];
 
-  constructor(private usuarioSvc: UsuariosService, private afAuth: AngularFireAuth, private turnoSvc: TurnoService, private router: Router) {
+  constructor(private usuarioSvc: UsuariosService, private afAuth: AngularFireAuth,
+     private turnoSvc: TurnoService, private router: Router, private toastr: ToastrService) {
     this.cargarTurnos();
     this.cargarEspecialidades();
-    this.cargarEspecialistas();
-  }
-
-  ngOnInit(): void {
-
-    this.afAuth.currentUser.then(user=>{
-      if(user){
-        this.usuarioLogueado = user;
-        this.isAdmin = user.displayName == "Administrador" ? true : false;
-      }else{
-        this.router.navigate([""]);
-      }
-    })
+    this.getEspecialistasSegunEspecialidad();
+    this.getPacientes();
 
     this.usuarioSvc.getListadoEspecialistas().subscribe((especialistas:any)=>{
       this.especialistas=especialistas;
-      if(!this.isAdmin){
-      this.especialistas.forEach((especialista:any) => {
-        if(especialista.email == this.usuario.email){
-          this.isEspecialista=true;
-        }
-      });
-      if(!this.isEspecialista){
-        this.isPaciente=true;
-      }
-    }
     });
-
-
   }
+
+  ngOnInit(): void {
+      this.isAdmin=false;
+      this.isPaciente=false;
+      this.isEspecialista=false;
+      this.afAuth.currentUser.then(user=>{
+        if(user){
+          this.usuario = user;
+          this.isAdmin = user.displayName == "Administrador" ? true : false;
+          if(this.isAdmin){
+            this.usuarioSvc.getListadoAdministradores().subscribe((administradores:any)=>{
+              this.administradores=administradores;
+              this.administradores.forEach((administrador:any) => {
+                if(administrador.email == this.usuario.email){
+                  this.usuario = administrador;
+                }
+              });
+            });
+          }else{
+            this.usuarioSvc.getListadoEspecialistas().subscribe((especialistas:any)=>{
+              this.especialistas=especialistas;
+              this.especialistas.forEach((especialista:any) => {
+                if(especialista.email == this.usuario.email){
+                  this.usuario = especialista;
+                  this.isEspecialista=true;
+                }
+              });
+            });
+            if(!this.isEspecialista){
+              this.usuarioSvc.getListadoPacientes().subscribe((pacientes:any)=>{
+                this.pacientes=pacientes;
+                this.pacientes.forEach((paciente:any) => {
+                  if(paciente.email == this.usuario.email){
+                    this.usuario = paciente;
+                    this.isPaciente=true;
+                  }
+                });
+              });
+            }
+
+            }
+          }
+      });
+      }
 
 
 
@@ -114,22 +139,15 @@ export class SolicitarTurnoComponent {
 
   }
 
-  cargarEspecialistas() {
-    this.usuarioSvc.getListadoEspecialistas().subscribe((especialistas: any) => {
-      this.especialistas = especialistas;
-    });
-
-
-
-  }
 
 
   getEspecialistasSegunEspecialidad(){
+    this.especialistasEspecialidad = [];
     this.especialistas.forEach((element: Especialista) => {
         element.especialidades.forEach((item:any) => {
-          if (item == this.especialidadSeleccionada) {
+          if (item == this.especialidadSeleccionada.especialidadData) {
+            console.log("especialidad seleccionada "+item);
             this.especialistasEspecialidad.push(element);
-
           }
         });
 
@@ -145,31 +163,27 @@ export class SolicitarTurnoComponent {
 
 
   registrarTurno() {
-    // this.usuario = this.authSvc.obtenerUsuaurioActual();
-    // console.log(this.usuario);
-    //this.getUsuario();
     if (this.usuario && this.especialistaSeleccionado && this.horaElegida) {
       this.turno = new Turno();
       this.turno.idEspecialista = this.especialistaSeleccionado.id;
       if (this.isAdmin) {
         this.turno.idPaciente = this.pacienteSeleccionado.id;
-        this.turno.paciente = this.pacienteSeleccionado;
+        this.turno.paciente = this.pacienteSeleccionado.nombre + " " + this.pacienteSeleccionado.apellido;
       }
       else {
         this.turno.idPaciente = this.usuario.id;
-        this.paciente = this.usuario;
+        this.paciente = this.usuario.nombre + " " + this.usuario.apellido;
         this.turno.paciente = this.paciente;
       }
-      this.turno.idPaciente = this.usuario.id;
-      this.turno.especialista = this.especialistaSeleccionado;
-      this.turno.especialidad = this.especialidadSeleccionada;
+      this.turno.especialista = this.especialistaSeleccionado.nombre + " " + this.especialistaSeleccionado.apellido;
+      this.turno.especialidad = this.especialidadSeleccionada.especialidadData;
       this.turno.estado = "PENDIENTE";
       this.turno.fecha = this.fechaElegida.row_date.day + "/" + this.fechaElegida.row_date.month + "/" + this.fechaElegida.row_date.year;
       this.turno.hora = this.horaElegida;
 
       this.turno.comentariosPaciente = "";
       this.turno.comentariosEspecialista = "";
-      //console.log(this.turno);
+      console.log(this.turno);
 
       this.turnoSvc.addTurno(this.turno);
 
@@ -177,7 +191,8 @@ export class SolicitarTurnoComponent {
       this.especialistaSeleccionado = null;
       this.fechaElegida = null;
       this.horaElegida = "";
-      this.router.navigate(['solicitarTurno']);
+      this.toastr.success('El turno se ha registrado correctamente', 'Turno registrado');
+      this.router.navigate(['/home']);
     }
 
   }
@@ -267,10 +282,12 @@ export class SolicitarTurnoComponent {
 
   mostrarHorarios(fecha:any) {
     this.fechaElegida = fecha;
+    console.log(this.fechaElegida);
   }
 
   fechaTurnoElegido(hora:any) {
     this.horaElegida = hora;
+    console.log(this.horaElegida);
   }
 
   cargarTurnosDisponibles() {

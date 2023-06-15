@@ -8,7 +8,7 @@
       <th scope="col">Obra Social</th>
       <th scope="col">Email</th>
     </tr>
-    <tr  *ngFor="let paciente of listadoPacientes">
+    <tr  *ngFor="let paciente of listadoPacientes"  (click)="enviarPaciente(paciente)">
       <td>{{paciente!.nombre}}</td>
       <td>{{paciente!.apellido}}</td>
       <td>{{paciente!.edad}}</td>
