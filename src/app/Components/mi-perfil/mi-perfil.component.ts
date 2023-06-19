@@ -2,7 +2,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/Clases/usuario';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 
 @Component({

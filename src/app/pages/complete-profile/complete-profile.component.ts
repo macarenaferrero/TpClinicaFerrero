@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,7 +13,19 @@ import { UsuariosService } from 'src/app/Services/usuarios.service';
 @Component({
   selector: 'app-complete-profile',
   templateUrl: './complete-profile.component.html',
-  styleUrls: ['./complete-profile.component.css']
+  styleUrls: ['./complete-profile.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({transform: 'translateY(-100%)'}),
+        animate('1000ms ease-in', style({transform: 'translateY(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('500ms ease-in', style({transform: 'translateY(-100%)'}))
+      ])
+    ])
+  ]
+
 })
 export class CompleteProfileComponent implements OnInit{
 captchaPropio:boolean = false;

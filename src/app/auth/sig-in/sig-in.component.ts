@@ -8,6 +8,7 @@ import { UsuariosService } from 'src/app/Services/usuarios.service';
 import { Especialista } from 'src/app/Clases/especialista';
 import { Paciente } from 'src/app/Clases/paciente';
 import { Administrador } from 'src/app/Clases/administrador';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-sig-in',
@@ -25,6 +26,7 @@ pacientes:Paciente[]=[];
 administradores:Administrador[]=[];
 isHabilitado:boolean=true;
 usuarioAIngresar:any;
+userAccesoRapido:any;
 
 
 constructor(private fb:FormBuilder, private afAuth:AngularFireAuth, private router:Router, private toastr:ToastrService,private usuariosService:UsuariosService) {
@@ -93,20 +95,23 @@ accesoRapidoAdmin(){
     email: "tkd05413@omeie.com",
     password:"123456"
   });
+  this.login();
 }
 
 accesoRapidoPaciente1(){
   this.inicioSesion.setValue({
-    email: "ege44800@zslsz.com",
+    email: "gpz78996@omeie.com",
     password:"123456"
   });
+  this.login();
 }
 
 accesoRapidoPaciente2(){
   this.inicioSesion.setValue({
-    email: "wde05627@nezid.com",
+    email: "ffschzseimguglgddb@bbitf.com",
     password:"123456"
   });
+  this.login();
 }
 
 accesoRapidoPaciente3(){
@@ -114,13 +119,15 @@ accesoRapidoPaciente3(){
     email: "ybabjicwnhqgtijowq@bbitf.com",
     password:"123456"
   });
+  this.login();
 }
 
-accesoRapidoEspecialista(){
+accesoRapidoEspecialista1(){
   this.inicioSesion.setValue({
     email: "vum97912@omeie.com",
     password:"123456"
   });
+  this.login();
 }
 
 accesoRapidoEspecialista2(){
@@ -128,6 +135,7 @@ accesoRapidoEspecialista2(){
     email: "jja10313@zbock.com",
     password:"123456"
   });
+  this.login();
 }
 
 registrar(){

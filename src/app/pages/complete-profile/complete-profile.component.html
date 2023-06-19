@@ -8,21 +8,21 @@
       <p>Tipo registro<span class="required">*</span></p>
       <div class="question-answer" formControlName="tipo" required>
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 pt-2">
             <button class="btn btn-success image-button" id="btnRegistro" type="button" (click)="DatosAdministrador()" *ngIf="isAdministrador">
               <div class="image-container">
                 <img id="imgBtnRegistro" src="../../../assets/admin.png">
               </div>
             </button>
           </div>
-          <div class="col-12">
+          <div class="col-12 pt-2">
             <button class="btn btn-success image-button" id="btnRegistro" type="button" (click)="DatosEspecialista()">
               <div class="image-container">
                 <img id="imgBtnRegistro" src="../../../assets/enfermera.jpg">
               </div>
             </button>
           </div>
-          <div class="col-12">
+          <div class="col-12 pt-2">
             <button class="btn btn-success image-button" id="btnRegistro" type="button" (click)="DatosPaciente()">
               <div class="image-container">
                 <img id="imgBtnRegistro" src="../../../assets/mujer.jpg">
@@ -31,18 +31,6 @@
           </div>
         </div>
 
-<!--
-
-
-        <input type="radio" value="paciente" id="paciente" name="tipo" formControlName="tipo" required />
-        <label for="paciente" class="radio" (click)="DatosPaciente()"><span>Paciente</span></label>
-
-        <input type="radio" value="especialista" id="especialista" name="tipo" required/>
-        <label for="especialista" class="radio" (click)="DatosEspecialista()"><span>Especialista</span></label>
-        <div *ngIf="isAdministrador">
-          <input type="radio" value="administrador" id="administrador" name="tipo" required/>
-          <label for="administrador" class="radio" (click)="DatosAdministrador()"><span>Administrador</span></label>
-        </div> -->
       </div>
       <span *ngIf="registro.get('tipo')?.hasError('required') && registro.get('tipo')?.touched"  class="text-danger form-floating">Debe seleccionar una opción</span>
 
@@ -52,7 +40,7 @@
 
 
     </div>
-    <div *ngIf="isPaciente || isEspecialista || crearAdministrador">
+    <div *ngIf="isPaciente || isEspecialista || crearAdministrador"  [@slideInOut]>
     <div class="item">
       <p>Nombre</p>
       <input type="text" name="nombre" formControlName="nombre"/>

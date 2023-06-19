@@ -203,7 +203,6 @@ width: calc(50% - 8px);
 .image-button {
   width: 150px;
   height: 150px;
-  border-radius: 50%;
   text-align: center;
   display: flex;
   flex-direction: column;

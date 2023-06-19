@@ -2,35 +2,49 @@
 
 <div class="container">
   <div class="row" *ngIf="visible" [@fadeInOut]>
-      <div class="col-12">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-              <h2>Usuario</h2>
-              <span class="badge badge-secondary badge-pill">!</span>
-          </h4>
-          <div class="row">
-              <div class="form-group col-md-4">
-                  <h4>Nombre: {{usuario.nombre!}}</h4>
-                  <h4>Apellido: {{usuario.apellido}}</h4>
-                  <h4>Email: {{usuario.email}}</h4>
-                  <h4>
-                      Tipo Usuario: {{usuario.tipoUsuario}}
-                      <div *ngIf="isAdmin">Administrador</div>
-                      <div *ngIf="isEspecialista">Especialista</div>
-                      <div *ngIf="isPaciente">Paciente</div>
-                  </h4>
-              </div>
-              <div class="form-group col-8">
-                  <div class="row">
-                      <div class="form-group col-md-4">
-                          <img [src]="usuario.imagen1" class="square-image">
-                      </div>
-                      <div class="form-group col-md-4" *ngIf="usuario.imagen2">
-                          <img [src]="usuario.imagen2" class="square-image">
-                      </div>
+    <div class="col-12" >
+      <h4 class="d-flex justify-content-between align-items-center mb-3 pt-5">
+          <h2>Usuario</h2>
+          <span class="badge badge-secondary badge-pill">!</span>
+      </h4>
+      <div class="row">
+          <div class="form-group col-md-4">
+              <table class="table table-bordered">
+                  <tr>
+                      <td><strong>Nombre:</strong></td>
+                      <td>{{usuario.nombre!}}</td>
+                  </tr>
+                  <tr>
+                      <td><strong>Apellido:</strong></td>
+                      <td>{{usuario.apellido}}</td>
+                  </tr>
+                  <tr>
+                      <td><strong>Email:</strong></td>
+                      <td>{{usuario.email}}</td>
+                  </tr>
+                  <tr>
+                      <td><strong>Tipo Usuario:</strong></td>
+                      <td>
+                          {{usuario.tipoUsuario}}
+                          <div *ngIf="isAdmin">Administrador</div>
+                          <div *ngIf="isEspecialista">Especialista</div>
+                          <div *ngIf="isPaciente">Paciente</div>
+                      </td>
+                  </tr>
+              </table>
+          </div>
+          <div class="form-group col-8">
+              <div class="row">
+                  <div class="form-group col-md-4">
+                      <img [src]="usuario.imagen1" class="square-image">
+                  </div>
+                  <div class="form-group col-md-4" *ngIf="usuario.imagen2">
+                      <img [src]="usuario.imagen2" class="square-image">
                   </div>
               </div>
           </div>
       </div>
+  </div>
   </div>
   <app-mis-horarios *ngIf="isEspecialista" [usuarioHorarios]="usuario"></app-mis-horarios>
   <br>

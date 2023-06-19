@@ -56,7 +56,7 @@ export class TurnoDetalleComponent {
       this.especialistas=especialistas;
       if(!this.isAdmin){
       this.especialistas.forEach((especialista:any) => {
-        if(especialista.email == this.usuario.email){
+        if(especialista.email == this.usuarioLoggeado.email){
           this.isEspecialista=true;
         }
       });
@@ -67,23 +67,6 @@ export class TurnoDetalleComponent {
     });
   }
 
-//   obtenerUsuarioLogueado(){
-
-//     this.usuario$.subscribe((result: any) => {
-//       if(result!= null)
-//       {
-//         this.email = result['email'];
-//         this.usuarioSvc.getUsuarios().subscribe(usuarios => {
-//           usuarios.forEach(usuario => {
-//             if(usuario.email == this.email){
-//               console.log(usuario);
-//               this.usuario = usuario;
-//             }
-//           })
-//         });
-//       }
-//     });
-// }
 
   cancelar(){
     this.turnoDetalle.estado = this.cancelado;

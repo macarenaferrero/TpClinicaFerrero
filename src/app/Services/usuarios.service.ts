@@ -4,6 +4,7 @@ import { Paciente } from '../Clases/paciente';
 import { Observable, map } from 'rxjs';
 import { Especialista } from '../Clases/especialista';
 import { Usuario } from '../Clases/usuario';
+import { Administrador } from '../Clases/administrador';
 
 
 @Injectable({
@@ -16,11 +17,15 @@ coleccionEspecialidades: CollectionReference<DocumentData> = collection(this.fir
 coleccionAdministradores: CollectionReference<DocumentData> = collection(this.firestore, 'administradores');
 especialidades!: Observable<any[]>;
 especialistas!: Observable<any[]>;
+pacientes!: Observable<any[]>;
+administradores!: Observable<Administrador>;
 especialistasPorEspecialidad!: Array<any>;
 
 constructor(private firestore: Firestore) {
   this.especialidades = collectionData(this.coleccionEspecialidades);
   this.especialistas = collectionData(this.coleccionEspecialistas);
+  this.pacientes = this.getListadoPacientes();
+  this.administradores = this.getListadoAdministradores();
 }
 
 
@@ -177,4 +182,39 @@ updateEspecialistaHorarios(especialistaModificado: Especialista): Promise<void> 
       });
   });
 }
+
+getPacienteByMail(email:string){
+  let paciente: any;
+  this.pacientes.forEach((item:any) => {
+    if (item.email === email) {
+      paciente = item;
+    }
+  });
+  return paciente;
+}
+
+getEspecialistaByMail(email:string){
+  let especialista: any;
+  this.especialistas.forEach((item:any) => {
+    if (item.email === email) {
+      especialista = item;
+    }
+  });
+  return especialista;
+}
+
+getAdministradorByMail(email:string){
+  let administrador: any;
+
+  this.administradores.forEach((item:Administrador) => {
+    console.log("item" +item);
+    if (item.email === email) {
+      administrador = item;
+      console.log("aadministrador" +administrador);
+    }
+  });
+  return administrador;
+}
+
+
 }
