@@ -16,21 +16,13 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from './Shared/shared.module';
 import { AdministradorRoutingModule } from './pages/administrador/administrador-routing.module';
 import { HomeModule } from './pages/home/home.module';
-import { AdministradorModule } from './pages/administrador/administrador.module';
-import { TurnoDetalleComponent } from './Components/turno-detalle/turno-detalle.component';
-import { EncuestaComponent } from './Components/encuesta/encuesta.component';
-import { CaptchaComponent } from './Components/captcha/captcha.component';
-import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
-import { EstadoDirective } from './directivas/estado.directive';
-import { ResaltarDirective } from './directivas/resaltar.directive';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
+import { ListadoEspecialidadesFotosComponent } from './Components/listado-especialidades-fotos/listado-especialidades-fotos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigInComponent,
-
-
 
   ],
   imports: [

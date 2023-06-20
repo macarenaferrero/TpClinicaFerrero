@@ -16,6 +16,8 @@ import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.compo
 import { MiPerfilComponent } from 'src/app/Components/mi-perfil/mi-perfil.component';
 import { MisHorariosComponent } from 'src/app/especialista/mis-horarios/mis-horarios.component';
 import { FormsModule } from '@angular/forms';
+import { ListadoEspecialistasFotosComponent } from 'src/app/Components/listado-especialistas-fotos/listado-especialistas-fotos.component';
+import { ListadoEspecialidadesFotosComponent } from 'src/app/Components/listado-especialidades-fotos/listado-especialidades-fotos.component';
 
 
 
@@ -26,6 +28,8 @@ import { FormsModule } from '@angular/forms';
     ListadoPacientesComponent,
     TurnosComponent,
     SolicitarTurnoComponent,
+    ListadoEspecialistasFotosComponent,
+    ListadoEspecialidadesFotosComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,8 @@ import { FormsModule } from '@angular/forms';
     ListadoPacientesComponent,
     TurnosComponent,
     SolicitarTurnoComponent,
+    ListadoEspecialistasFotosComponent,
+    ListadoEspecialidadesFotosComponent
   ]
 })
 export class AdministradorModule { }

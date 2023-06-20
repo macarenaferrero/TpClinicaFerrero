@@ -23,7 +23,6 @@ export class SolicitarTurnoComponent {
   especialistaSeleccionado: any;
   pacienteSeleccionado: any;
   usuarios: Usuario[] = [];
-  especialistas: Especialista[] = [];
   especialistasEspecialidad: Especialista[] = [];
   pacientes: Paciente[] = [];
   turno!: Turno;
@@ -46,12 +45,12 @@ export class SolicitarTurnoComponent {
   isEspecialista:boolean=false;
   usuarioLogueado:any;
   administradores:Administrador[]=[];
+  especialistas: Especialista[] = [];
+  especialidadesConImagenes: any[] = [];
 
   constructor(private usuarioSvc: UsuariosService, private afAuth: AngularFireAuth,
      private turnoSvc: TurnoService, private router: Router, private toastr: ToastrService) {
     this.cargarTurnos();
-    this.cargarEspecialidades();
-    this.getEspecialistasSegunEspecialidad();
     this.getPacientes();
 
     this.usuarioSvc.getListadoEspecialistas().subscribe((especialistas:any)=>{
@@ -105,13 +104,6 @@ export class SolicitarTurnoComponent {
 
 
 
-  cargarEspecialidades() {
-    this.usuarioSvc.getEspecialidades().subscribe((especialidades: any) => {
-      this.especialidades = especialidades;
-      //console.log(especialidades);
-    });
-  }
-
   cargarTurnos() {
     this.getDates();
 
@@ -122,37 +114,34 @@ export class SolicitarTurnoComponent {
   }
 
   asignarEspecialidadSeleccionada(especialidad:any) {
-    // var data = especialidad;
     this.especialidadSeleccionada = especialidad;
-    this.getEspecialistasSegunEspecialidad();
-    //this.especialidadesSeleccionadas.push(especialidad);
-    //this.formulario.controls['especialidades'].setValue(this.especialidadesSeleccionadas);
 
   }
 
   asignarEspecialista(especialista:any) {
-    // var data = especialidad;
+    this.especialidadesConImagenes = [];
     this.especialistaSeleccionado = especialista;
-    //this.getEspecialistas();
-    //this.especialidadesSeleccionadas.push(especialidad);
-    //this.formulario.controls['especialidades'].setValue(this.especialidadesSeleccionadas);
-
-  }
-
-
-
-  getEspecialistasSegunEspecialidad(){
-    this.especialistasEspecialidad = [];
-    this.especialistas.forEach((element: Especialista) => {
-        element.especialidades.forEach((item:any) => {
-          if (item == this.especialidadSeleccionada.especialidadData) {
-            console.log("especialidad seleccionada "+item);
-            this.especialistasEspecialidad.push(element);
+    this.usuarioSvc.getEspecialidades().subscribe((especialidades: any) => {
+      especialidades.forEach((especialidad: any) => {
+        especialista.especialidades.forEach((especialidadEspecialista: any) => {
+          if (especialidadEspecialista == especialidad.especialidadData) {
+            const especialidadConImagen = {
+              especialidad: especialidad.especialidadData,
+              imagen: especialidad.imgEspecialidadUrl
+            };
+            this.especialidadesConImagenes.push(especialidadConImagen);
           }
         });
-
+      });
     });
   }
+
+
+
+
+
+
+
 
 
   getPacientes() {
@@ -196,19 +185,6 @@ export class SolicitarTurnoComponent {
     }
 
   }
-
-  // fechas = [];
-  // crearFechas(fecha) {
-  //   var hoy = new Date();
-
-  //   this.fechas.forEach(element => {
-  //     let instancia = { dia: fecha.dia, fecha: fecha.fecha, hora: fecha.hora };
-  //     // this.seCreaAbecedario.emit(instancia);
-  //     // this.agregarNuevoProducto(instancia);
-  //   });
-  // }
-
-
 
 
   getDates() {

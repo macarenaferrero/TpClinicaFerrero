@@ -24,8 +24,6 @@ especialistasPorEspecialidad!: Array<any>;
 constructor(private firestore: Firestore) {
   this.especialidades = collectionData(this.coleccionEspecialidades);
   this.especialistas = collectionData(this.coleccionEspecialistas);
-  this.pacientes = this.getListadoPacientes();
-  this.administradores = this.getListadoAdministradores();
 }
 
 
@@ -94,6 +92,7 @@ getEspecialistasPorEspecialidad(especialidad: string): Array<any>{
   });
   return this.especialistasPorEspecialidad;
 }
+
 
 verificarAprobacionAdmin(especialista: Especialista) {
   this.especialistas.forEach((item:any) => {

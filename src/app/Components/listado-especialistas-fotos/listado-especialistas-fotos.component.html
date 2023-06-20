@@ -1,0 +1,4 @@
+<div class="especialista-item" *ngFor="let especialista of listadoEspecialistas" (click)="enviarEspecialista(especialista)">
+  <img class="especialista-imagen" [src]="especialista.imagen1">
+  <h6>{{especialista.nombre}} {{especialista.apellido}}</h6>
+</div>

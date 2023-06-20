@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="pt-2">
+    <div class="col">
+      <!-- <ul class="list-group" style="display: flex; flex-direction: column;">
+        <li class="list-group-item " *ngFor="let especialidad of especialidades" (click)="asignarEspecialidad(especialidad)">
+          <button type="button" class="btn especialista-item">
+            <img class="especialista-imagen" id="imgEspecialidad" [src]="especialidad.imagen">
+          </button>
+        </li>
+      </ul> -->
+      <div class="form-group col-2">
+        <button type="button" class="btn button-scale" id="btnLogs" *ngFor="let especialidad of especialidades" (click)="asignarEspecialidad(especialidad)">
+          <img id="imgBotonesLog" [src]="especialidad.imagen">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

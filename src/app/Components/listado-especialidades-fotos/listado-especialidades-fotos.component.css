@@ -1,0 +1,35 @@
+.especialista-item {
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.especialista-imagen {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border-color: black;
+}
+
+
+#imgBotonesLog{
+  height: 58px;
+  width: 58px;
+  display:block;
+  margin:auto;
+  border-radius: 2rem;
+  background-color: rgb(160, 255, 160);
+
+  /*background-image: url('../../../assets/ahorcado/ahorcado.jpg');*/
+}
+
+#btnLogs{
+  height: 70px;
+  width: 70px;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left:5px;
+  padding-right:5px;
+  border-color: black;
+  border-radius: 50%;
+
+}

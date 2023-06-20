@@ -1,0 +1,11 @@
+.especialista-item {
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.especialista-imagen {
+  width: 150px; /* Ajusta el tamaño de la imagen según tus necesidades */
+  height: 150px;
+}
+

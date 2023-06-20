@@ -8,18 +8,19 @@
 
     <div class="p-5 mb-4 bg-body-tertiary border rounded-3">
       <div class="container-fluid py-1">
-        <app-lista-especialidades  [especialidades]="especialidades" (especialidadSeleccionada)="asignarEspecialidadSeleccionada($event)"></app-lista-especialidades>
+        <h4>Especialistas</h4>
+        <app-listado-especialistas-fotos [listadoEspecialistas]="especialistas" (especialistaSeleccionado)="asignarEspecialista($event)"></app-listado-especialistas-fotos>
         <br/>
-        <h4 *ngIf="especialidadSeleccionada">Especialistas</h4>
-        <app-listado-especialistas [listadoEspecialistas]="especialistasEspecialidad" (especialistaSeleccionado)="asignarEspecialista($event)" *ngIf="especialidadSeleccionada"></app-listado-especialistas>
+        <h4 *ngIf="especialistaSeleccionado" class="pt-2">Especialidades</h4>
+        <app-listado-especialidades-fotos [especialidades]="especialidadesConImagenes" (especialidadSeleccionada)="asignarEspecialidadSeleccionada($event)" *ngIf="especialistaSeleccionado"></app-listado-especialidades-fotos>
         <br/>
-        <h4 *ngIf="!isPaciente">Pacientes</h4>
-        <app-listado-pacientes  *ngIf="!isPaciente" [listadoPacientes]="pacientes" (pacienteSeleccionado)="enviarUsuarioSeleccionado($event)"></app-listado-pacientes>
+        <h4 *ngIf="!isPaciente && especialidadSeleccionada">Pacientes</h4>
+        <app-listado-pacientes  *ngIf="!isPaciente  && especialidadSeleccionada" [listadoPacientes]="pacientes" (pacienteSeleccionado)="enviarUsuarioSeleccionado($event)"></app-listado-pacientes>
       </div>
     </div>
 
 
-    <div class="row align-items-md-stretch" *ngIf="especialistaSeleccionado">
+    <div class="row align-items-md-stretch" *ngIf="especialidadSeleccionada">
       <div class="col-md-12">
         <h5>Seleccionar fecha</h5>
         <div class="h-100 p-5 bg-body-tertiary row">
