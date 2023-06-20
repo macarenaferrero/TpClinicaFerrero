@@ -1,4 +1,7 @@
 export class HistoriaClinica {
+  toJSON() {
+    throw new Error('Method not implemented.');
+  }
   //id: any;
   altura!:number;
   peso!:number;
@@ -10,10 +13,4 @@ export class HistoriaClinica {
   valor2!:string;
   clave3!:string;
   valor3!:string;
-  clave4!:string;
-  valor4!:string;
-  clave5!:string;
-  valor5!:string;
-  clave6!:string;
-  valor6!:string;
 }

@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
@@ -14,7 +15,15 @@ import { UsuariosService } from 'src/app/Services/usuarios.service';
 @Component({
   selector: 'app-solicitar-turno',
   templateUrl: './solicitar-turno.component.html',
-  styleUrls: ['./solicitar-turno.component.css']
+  styleUrls: ['./solicitar-turno.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate(1000)),
+    ]),
+  ]
 })
 export class SolicitarTurnoComponent {
 
@@ -165,7 +174,7 @@ export class SolicitarTurnoComponent {
         this.turno.paciente = this.paciente;
       }
       this.turno.especialista = this.especialistaSeleccionado.nombre + " " + this.especialistaSeleccionado.apellido;
-      this.turno.especialidad = this.especialidadSeleccionada.especialidadData;
+      this.turno.especialidad = this.especialidadSeleccionada.especialidad;
       this.turno.estado = "PENDIENTE";
       this.turno.fecha = this.fechaElegida.row_date.day + "/" + this.fechaElegida.row_date.month + "/" + this.fechaElegida.row_date.year;
       this.turno.hora = this.horaElegida;
@@ -309,10 +318,5 @@ export class SolicitarTurnoComponent {
     console.log(this.pacienteSeleccionado);
 
   }
-
-  resolvedPropio(captcha: boolean){
-    this.captchaPropio = captcha;
-  }
-
 
 }

@@ -38,6 +38,10 @@
   <div *ngIf="turnoSeleccionado">
       <app-encuesta *ngIf="turnoSeleccionado.estado == 'REALIZADO' && turnoSeleccionado.comentariosEspecialista != ''" [turno]="turnoSeleccionado"></app-encuesta>
   </div>
+
+  <div *ngIf="turnoSeleccionado && mostrarAltaHistoria">
+    <app-alta-historia-clinica *ngIf="turnoSeleccionado.estado == 'FINALIZADO'" [turno]="turnoSeleccionado"></app-alta-historia-clinica>
+  </div>
 </div>
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->
 

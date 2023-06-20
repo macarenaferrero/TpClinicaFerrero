@@ -22,6 +22,8 @@
     "animations": "^0.0.0",
     "firebase": "^9.22.1",
     "firebase-admin": "^11.9.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -18,11 +18,13 @@ import { AdministradorRoutingModule } from './pages/administrador/administrador-
 import { HomeModule } from './pages/home/home.module';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { ListadoEspecialidadesFotosComponent } from './Components/listado-especialidades-fotos/listado-especialidades-fotos.component';
+import { AltaHistoriaClinicaComponent } from './Components/alta-historia-clinica/alta-historia-clinica.component';
+import { HistoriaClinicaComponent } from './Components/historia-clinica/historia-clinica.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SigInComponent,
+    SigInComponent
 
   ],
   imports: [

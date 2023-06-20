@@ -7,6 +7,8 @@ import { HomeModule } from '../pages/home/home.module';
 import { MisHorariosComponent } from './mis-horarios/mis-horarios.component';
 import { MiPerfilComponent } from '../Components/mi-perfil/mi-perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HistoriaClinicaComponent } from '../Components/historia-clinica/historia-clinica.component';
+import { AltaHistoriaClinicaComponent } from '../Components/alta-historia-clinica/alta-historia-clinica.component';
 
 
 
@@ -14,7 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     MisTurnosEspecialistaComponent,
     MisHorariosComponent,
-    MiPerfilComponent
+    MiPerfilComponent,
+    HistoriaClinicaComponent,
+    AltaHistoriaClinicaComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports: [
     MisTurnosEspecialistaComponent,
     MisHorariosComponent,
-    MiPerfilComponent
+    MiPerfilComponent,
+    HistoriaClinicaComponent,
+    AltaHistoriaClinicaComponent
   ]
 })
 export class EspecialistaModule { }

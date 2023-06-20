@@ -59,14 +59,12 @@ export class MisTurnosEspecialistaComponent implements OnInit {
       this.especialistas.forEach((especialista) => {
         if(especialista.email == this.usuarioLoggeado.email){
           this.usuario = especialista;
-          console.log(this.usuario);
         }
       });
     });
 
     this.turnoSvc.getListadoTurnos().subscribe((turnos) => {
       this.turnosOcupados = turnos;
-      console.log(this.turnosOcupados);
       this.cargarTurnos();
 
     });
@@ -77,23 +75,17 @@ export class MisTurnosEspecialistaComponent implements OnInit {
     this.turnosEspecialista = [];
     this.turnosOcupados.forEach((element: Turno) => {
           if (element.idEspecialista == this.usuario?.id) {
-            console.log("Turnos especialista "+element);
             this.turnosEspecialista.push(element);
-            console.log(this.turnosEspecialista);
           }
     });
   }
 
-  asignarTurno(turno: any) {
-
+  asignarTurno(turno: Turno) {
 
     this.turnoSeleccionado = turno;
-    console.log(this.turnoSeleccionado.historiaClinica);
-    console.log(turno.historiaClinica);
-
-    if(turno.historiaClinica != ""){
+    console.log(this.turnoSeleccionado);
+    if(turno.historiaClinica?.altura != null){
       console.log("oculto");
-
       this.mostrarAltaHistoria = false;
     }
     else{

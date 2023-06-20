@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<main>
+<main [@fadeInOut]>
   <div class="container py-4">
     <header class="pb-3 mb-4">
       <h1 class="display-5 fw-bold">Administración de turnos</h1>
@@ -39,12 +39,9 @@
         </div>
       </div>
       <div>
-        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-          <app-captcha (resultadoCaptcha)="resolvedPropio($event)"></app-captcha>
-          <div class="form-group col-md-2" [hidden]="!captchaPropio">
-            <button class="btn btn-success" (click)="registrarTurno()">Confirmar</button>
+          <div class="form-group col-md-2">
+            <button class="btn btn-success" *ngIf="fechaElegida" (click)="registrarTurno()">Confirmar</button>
           </div>
-        </div>
       </div>
   </div>
 </main>

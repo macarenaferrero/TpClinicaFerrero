@@ -7,11 +7,20 @@ import { Especialista } from 'src/app/Clases/especialista';
 import { Paciente } from 'src/app/Clases/paciente';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 import * as admin from 'firebase-admin';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  styleUrls: ['./usuarios.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate(1000)),
+    ]),
+  ]
 })
 export class UsuariosComponent {
   pacientes: Paciente[] = [];
