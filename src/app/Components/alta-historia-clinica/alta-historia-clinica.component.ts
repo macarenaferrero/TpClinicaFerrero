@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HistoriaClinica } from 'src/app/Clases/historia-clinica';
+import { Turno } from 'src/app/Clases/turno';
 import { HistoriaClinicaService } from 'src/app/Services/historia-clinica.service';
 import { TurnoService } from 'src/app/Services/turno.service';
 
@@ -42,6 +43,14 @@ export class AltaHistoriaClinicaComponent {
   }
 
   ngOnInit(): void {
+    this.turnoSvc.getListadoTurnos().subscribe((turnos) => {
+      turnos.forEach((turno:Turno) => {
+        if(turno.paciente == this.turno.paciente && turno.historiaClinica){
+          this.formulario.controls['Altura'].setValue(turno.historiaClinica.altura);
+          this.formulario.controls['Peso'].setValue(turno.historiaClinica.peso);
+        }
+      });
+    });
   }
 
   aceptar() {
