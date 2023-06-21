@@ -142,10 +142,9 @@ export class MisHorariosComponent implements OnInit {
    this.horario.horarioSabado = [{ desde: this.formulario.controls['sabadoHoraDesde'].value, hasta: this.formulario.controls['sabadoHoraHasta'].value }];
 
    if (this.horario) {
-    const horariosJSON = JSON.stringify(this.horario); // Convertir el objeto a formato JSON
 
-    this.especialista!.horarios = horariosJSON;
-    this.usuarioSvc.updateEspecialistaHorarios(this.especialista!) // Pasar this.especialista! al método de actualización
+    this.especialista!.horarios = this.horario;
+    this.usuarioSvc.updateEspecialistaHorarios(this.especialista!)
       .then(() => {
         this.toastr.success('Horarios guardados exitosamente.', '¡Éxito!');
         this.formulario.reset();
@@ -159,9 +158,6 @@ export class MisHorariosComponent implements OnInit {
   }
 }
 
- resolvedPropio(captcha: boolean){
-  this.captchaPropio = captcha;
-}
 
 
 }
