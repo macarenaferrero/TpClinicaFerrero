@@ -170,7 +170,7 @@ updateEspecialistaHorarios(especialistaModificado: Especialista): Promise<void> 
   return new Promise((resolve, reject) => {
     const especialistas = doc(this.coleccionEspecialistas, especialistaModificado.id);
     updateDoc(especialistas, {
-      horarios: especialistaModificado.horarios
+      horarios: Object.assign({}, especialistaModificado.horarios)
     })
     .then(() => {
         resolve();

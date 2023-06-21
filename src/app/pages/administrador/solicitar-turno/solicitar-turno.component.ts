@@ -146,13 +146,6 @@ export class SolicitarTurnoComponent {
   }
 
 
-
-
-
-
-
-
-
   getPacientes() {
     this.usuarioSvc.getListadoPacientes().subscribe((pacientes: any) => {
       this.pacientes = pacientes;
