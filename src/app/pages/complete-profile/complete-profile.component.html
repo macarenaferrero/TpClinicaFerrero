@@ -6,7 +6,7 @@
     <br />
     <div class="question">
       <p>Tipo registro<span class="required">*</span></p>
-      <div class="question-answer" formControlName="tipo" required>
+      <div class="question-answer" required>
         <div class="row">
           <div class="col-12 pt-2">
             <button class="btn btn-success image-button" id="btnRegistro" type="button" (click)="DatosAdministrador()" *ngIf="isAdministrador">
@@ -32,12 +32,6 @@
         </div>
 
       </div>
-      <span *ngIf="registro.get('tipo')?.hasError('required') && registro.get('tipo')?.touched"  class="text-danger form-floating">Debe seleccionar una opción</span>
-
-
-
-
-
 
     </div>
     <div *ngIf="isPaciente || isEspecialista || crearAdministrador"  [@slideInOut]>

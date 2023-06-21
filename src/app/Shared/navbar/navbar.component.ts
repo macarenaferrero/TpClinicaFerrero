@@ -33,13 +33,14 @@ export class NavbarComponent {
       this.especialistas=especialistas;
       if(!this.isAdmin){
       this.especialistas.forEach((especialista:any) => {
-        if(especialista.email == this.usuario.email){
+        if(especialista.email == this.usuario?.email){
           this.isEspecialista=true;
+          this.isPaciente=false;
+        }else if(!this.isEspecialista){
+          this.isPaciente=true;
+          this.isEspecialista=false;
         }
       });
-      if(!this.isEspecialista){
-        this.isPaciente=true;
-      }
     }
     });
   }

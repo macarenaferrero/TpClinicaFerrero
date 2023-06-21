@@ -16,8 +16,6 @@ export class ListadoEspecialistasFotosComponent {
 constructor(){}
 
   enviarEspecialista(especialista:Especialista){
-    console.log(especialista);
-
     this.especialistaSeleccionado.emit(especialista);
   }
 

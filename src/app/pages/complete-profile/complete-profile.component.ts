@@ -45,7 +45,6 @@ obtengoFile2!: string;
 constructor(private fb:FormBuilder, private toastr: ToastrService, private router: Router,
   private afAuth:AngularFireAuth, public usuarioService : UsuariosService, private route:ActivatedRoute) {
     this.registro = this.fb.group({
-      tipo:['',[Validators.required]],
       nombre:['',[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       apellido:['',[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       edad:['',[Validators.required, Validators.pattern('^[0-9]*$')]],
@@ -99,19 +98,6 @@ DatosAdministrador(){
 }
 
 RegistrarPaciente(){
-
-  // const file1 = this.selectedFiles.item(0);
-  // console.log(this.selectedFiles.item(0));
-  // //this.selectedFiles = undefined;
-  // if(file1 != null){
-  //   this.imagen1 = new Imagen(file1);
-  // }
-
-  // const file2 = this.selectedFiles2.item(0);
-  // console.log(this.selectedFiles2.item(0));
-  // if(file2 != null){
-  //   this.imagen2 = new Imagen(file2);
-  // }
 const datoGrabar: Paciente = {
   nombre: this.registro.get('nombre')?.value,
   apellido: this.registro.get('apellido')?.value,
@@ -150,11 +136,6 @@ this.usuarioService.crearPaciente(datoGrabar).then(()=>{
 
 
 RegistrarEspecialista(){
-  // const imagen1 = this.selectedFiles.item(0);
-  //   console.log(this.selectedFiles.item(0));
-  //   if(imagen1 != null){
-  //     this.imagen1 = new Imagen(imagen1);
-  //   }
   const datoGrabar: Especialista = {
     nombre: this.registro.get('nombre')?.value,
     apellido: this.registro.get('apellido')?.value,
@@ -192,11 +173,6 @@ RegistrarEspecialista(){
   }
 
   RegistrarAdministrador(){
-    // const imagen1 = this.selectedFiles.item(0);
-    // console.log(this.selectedFiles.item(0));
-    // if(imagen1 != null){
-    //   this.imagen1 = new Imagen(imagen1);
-    // }
     const datoGrabar: Administrador = {
       nombre: this.registro.get('nombre')?.value,
       apellido: this.registro.get('apellido')?.value,
@@ -218,7 +194,6 @@ RegistrarEspecialista(){
       user.updateProfile({
         displayName: "Administrador"
       }).then(() => {
-        console.log(user.displayName);
         return user;
       })
     }else {
@@ -248,13 +223,11 @@ RegistrarEspecialista(){
   selectFile(event:any): void {
     const file = event.target.files[0];
     this.obtengoFile = "../../assets/"+file.name;
-    console.log(this.obtengoFile);
 
   }
   selectFile2(event: any): void {
     const file = event.target.files[0];
     this.obtengoFile2 = "../../assets/"+file.name;
-    console.log(this.obtengoFile);
 
   }
 

@@ -181,7 +181,6 @@ export class SolicitarTurnoComponent {
 
       this.turno.comentariosPaciente = "";
       this.turno.comentariosEspecialista = "";
-      console.log(this.turno);
 
       this.turnoSvc.addTurno(this.turno);
 
@@ -233,17 +232,14 @@ export class SolicitarTurnoComponent {
       var row_date;
       var hours;
       if (current_date.getDay() == 6) {
-        //console.log(current_date.getDay());
 
         hours = hoursSat;
         row_date = { day: getDate, month: getMonth, year: current_date.getFullYear(), hours };
-        //console.log(row_date);
 
       }
       else {
         hours = hoursWeek;
         row_date = { day: getDate, month: getMonth, year: current_date.getFullYear(), hours };
-        //console.log(row_date);
       }
 
       var fmt_date = { weekDay: weekday[current_date.getDay()], date: getDate, month: months[current_date.getMonth()] };
@@ -256,27 +252,21 @@ export class SolicitarTurnoComponent {
         dates.push({ row_date: row_date, fmt_date: fmt_date, is_weekend: is_weekend });
       }
       current_date.setDate(current_date.getDate() + 1);
-      //console.log(row_date.hours);
     }
-    //console.log(dates);
 
     this.fechas = dates;
-    //console.log(this.fechas);
 
   }
 
   mostrarHorarios(fecha:any) {
     this.fechaElegida = fecha;
-    console.log(this.fechaElegida);
   }
 
   fechaTurnoElegido(hora:any) {
     this.horaElegida = hora;
-    console.log(this.horaElegida);
   }
 
   cargarTurnosDisponibles() {
-    //console.log(this.fechas);
 
     var fechaDis;
     this.turnosOcupados.forEach((turno: { fecha: string; hora: any; }) => {
@@ -285,19 +275,10 @@ export class SolicitarTurnoComponent {
         fechaDis = element.row_date.day + "/" + element.row_date.month + "/" + element.row_date.year;
 
         if (turno.fecha == fechaDis) {
-          // console.log("fechaDis " + fechaDis);
-          // console.log("fecha turno ocupado " + turno.fecha);
-          // console.log(element);
-
           for (let index = 0; index < element.row_date.hours.length; index++) {
             const item = element.row_date.hours[index];
             if (item == turno.hora) {
-             // console.log("element: " + item + "hora ocupada:  " + turno.hora + " en fecha   " + fechaDis);
-
-              //fecha.row_date.hours.splice(fecha.row_date.hours[index], 1);
               element.row_date.hours[index] = null;
-              //fecha.row_date.hours[index] = fecha.row_date.hours[index].replace(element, "")
-             // console.log("horario eliminado   " + item);
 
             }
           }
@@ -307,7 +288,6 @@ export class SolicitarTurnoComponent {
 
 
     });
-    //console.log(this.turnosDisponibles);
     this.turnosDisponibles = this.turnosDisponibles.filter((item:any, index:any) => {
       return this.turnosDisponibles.indexOf(item) === index;
     })
@@ -315,7 +295,6 @@ export class SolicitarTurnoComponent {
 
   enviarUsuarioSeleccionado(usuario: any) {
     this.pacienteSeleccionado = usuario;
-    console.log(this.pacienteSeleccionado);
 
   }
 

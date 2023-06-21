@@ -13,13 +13,10 @@ export class ListadoEspecialidadesFotosComponent {
   constructor(private usuariosService:UsuariosService) {}
 
   ngOnInit(): void {
-    //this.cargarEspecialidades()
   }
 
 
   asignarEspecialidad(especialidad: any){
-    console.log(especialidad);
-
     this.especialidadSeleccionada.emit(especialidad);
   }
 }

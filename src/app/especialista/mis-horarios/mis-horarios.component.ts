@@ -73,7 +73,6 @@ export class MisHorariosComponent implements OnInit {
             this.especialistas.forEach((especialista:any) => {
               if(especialista.email == user.email){
                 this.especialista = especialista;
-                console.log(this.especialista);
               }
             });
           });
@@ -91,7 +90,6 @@ export class MisHorariosComponent implements OnInit {
      var minutos = nombre.split(':')[1];
      var minCero = minutos.includes("00");
      var minTreinta = minutos.includes("30");
-     //console.log(minutos);
 
      if (minCero) {
        return null;
@@ -112,7 +110,6 @@ export class MisHorariosComponent implements OnInit {
    const nombre = control.value;
    if(nombre != "" && nombre != null){
      var hora = nombre.split(':')[0];
-     //console.log(hora);
 
      if (hora <= 8 || hora > 19) {
        return { horaValido: true };
@@ -125,7 +122,6 @@ export class MisHorariosComponent implements OnInit {
    const nombre = control.value;
    if(nombre != "" && nombre != null){
      var hora = nombre.split(':')[0];
-     //console.log(hora);
 
      if (hora <= 8 || hora > 14) {
        return { horaValido: true };

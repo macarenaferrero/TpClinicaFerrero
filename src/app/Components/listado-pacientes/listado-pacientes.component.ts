@@ -12,8 +12,6 @@ export class ListadoPacientesComponent {
   @Output() pacienteSeleccionado = new EventEmitter<Paciente>();
 
   enviarPaciente(paciente: Paciente){
-    console.log(paciente);
-
     this.pacienteSeleccionado.emit(paciente);
   }
 }

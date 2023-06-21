@@ -25,7 +25,7 @@
           <div *ngIf="turno.comentariosEspecialista != ''">
               Especialista: {{ turno.comentariosEspecialista }}
           </div>
-          <div *ngIf="turno.comentariosAdmin != ''">
+          <div *ngIf="turno.comentariosAdmin != '' || turno.comentariosAdmin != undefined">
               Admin: {{ turno.comentariosAdmin }}
           </div>
       </td>

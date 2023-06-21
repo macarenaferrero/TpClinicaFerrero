@@ -44,19 +44,15 @@ export class HistoriaClinicaComponent {
 
     this.usuariosService.getListadoPacientes().subscribe((pacientes) => {
       this.pacientes = pacientes;
-      console.log(this.pacientes);
       this.pacientes.forEach((paciente) => {
         if(paciente.email == this.usuarioLoggeado.email){
           this.usuario = paciente;
-          console.log(this.usuario);
-          // this.turnosPaciente = this.turnoSvc.getTurnosPorPaciente(this.usuario);
         }
       });
     });
 
     this.turnoSvc.getListadoTurnos().subscribe((turnos) => {
       this.turnosOcupados = turnos;
-      console.log(this.turnosOcupados);
       this.buscarHistoria();
 
     });
@@ -64,30 +60,34 @@ export class HistoriaClinicaComponent {
 
    buscarHistoria() {
     this.turnosPaciente = [];
-    console.log("idUsuario" +this.usuario?.id);
     this.turnosOcupados.forEach((element: Turno) => {
           if (element.idPaciente === this.usuario?.id && element.estado === "FINALIZADO") {
             this.turnosPaciente.push(element);
-            console.log("turnos paciente "+this.turnosPaciente);
           }
 
     });
 
 
    }
+   crearPdf() {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString(); // Puedes personalizar el formato según tus necesidades
 
-  crearPdf() {
     let DATA = <HTMLElement>document.getElementById('pdfTable');
 
     html2canvas(DATA).then(canvas => {
-
       let fileWidth = 208;
       let fileHeight = canvas.height * fileWidth / canvas.width;
 
       const FILEURI = canvas.toDataURL('image/png')
       let PDF = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+      let position = 20; // Incrementa la posición vertical para dejar espacio para la fecha
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+
+      const fechaX = 170; // Posición X de la fecha
+      const fechaY = 15; // Posición Y de la fecha
+      PDF.text(formattedDate, fechaX, fechaY);
+
       var nombreArchivo ='historia-clinica.pdf';
       PDF.save(nombreArchivo);
     });

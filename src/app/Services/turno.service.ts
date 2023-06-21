@@ -25,28 +25,12 @@ export class TurnoService {
 
   constructor(public db: Firestore) {
     this.turnos = this.getListadoTurnos()
-    console.log("turnos desde constructor service "+this.turnos);
   }
 
   getListadoTurnos(): Observable<any>{
     const observable = collectionData(this.coleccionTurnos);
     return observable;
   }
-
-  // getHistoriaClinica(idPaciente: string){
-  //   console.log("id paciente desde service "+idPaciente);
-  //   console.log("turnos desde service "+this.turnos);
-  //   this.turnos.subscribe((turnos: Turno) => {
-  //     console.log("turnos desde service "+turnos);
-  //     if(turnos.idPaciente == idPaciente){
-  //       this.historiasClinicas.push(turnos.historiaClinica)
-  //     }
-  //   });
-  //   console.log("historia clinica desde service "+this.historiasClinicas);
-  //   return this.historiasClinicas;
-  // }
-
-
 
   addTurno(turnoData: any): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -195,7 +179,6 @@ export class TurnoService {
   }
 
   getTurnosPorPaciente(paciente:Paciente): Array<any>{
-    console.log("Dentro turno service, turnos: "+ this.turnos);
     this.turnos.forEach(turno => {
       if(turno.idPaciente == paciente.id){
         this.turnosPorPaciente.push(turno);

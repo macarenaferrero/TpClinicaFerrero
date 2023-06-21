@@ -55,9 +55,8 @@ export class MisTurnosEspecialistaComponent implements OnInit {
 
     this.usuarioSvc.getListadoEspecialistas().subscribe((especialistas) => {
       this.especialistas = especialistas;
-      console.log(this.especialistas);
       this.especialistas.forEach((especialista) => {
-        if(especialista.email == this.usuarioLoggeado.email){
+        if(especialista.email == this.usuarioLoggeado?.email){
           this.usuario = especialista;
         }
       });
@@ -83,13 +82,10 @@ export class MisTurnosEspecialistaComponent implements OnInit {
   asignarTurno(turno: Turno) {
 
     this.turnoSeleccionado = turno;
-    console.log(this.turnoSeleccionado);
     if(turno.historiaClinica?.altura != null){
-      console.log("oculto");
       this.mostrarAltaHistoria = false;
     }
     else{
-      console.log("muestro");
       this.mostrarAltaHistoria = true;
     }
   }

@@ -1,8 +1,8 @@
 <form [formGroup]="formulario" (ngSubmit)="registrar()" [@slideInOut]>
   <div class="container">
+    <h4 class="mb-3 text-center">Alta Horarios</h4>
       <div class="row">
-          <h4 class="mb-3 text-center">Alta Horarios</h4>
-          <div class="col-md-8 order-md-1">
+          <div class="col-md-12 order-md-1">
               <div class="row">
                   <div class="col-12 mb-3">
                       <label for="especialidad">Especialidad</label>
@@ -146,18 +146,11 @@
                                   Los minutos permitidos son 00 o 30.</span>
                           </div>
                       </div>
-
-
                   </div>
-
-
               </div>
 
-              <div class="mb-3">
-                  <app-captcha (resultadoCaptcha)="resolvedPropio($event)"></app-captcha>
-              </div>
               <hr class="mb-4">
-              <div [hidden]="!captchaPropio">
+              <div>
                   <button class="btn btn-primary btn-lg btn-block" type="submit"
                       [disabled]="formulario.invalid">Registrar</button>
               </div>

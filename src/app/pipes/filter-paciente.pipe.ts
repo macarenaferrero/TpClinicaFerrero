@@ -9,7 +9,6 @@ export class FilterPacientePipe implements PipeTransform {
     const resultPosts = [];
 
     if(arg != null){
-      console.log(value);
 
       for (const post of value) {
         if (post.especialidad.indexOf(arg) > -1 || post.especialista.indexOf(arg) > -1)

@@ -173,11 +173,10 @@ updateEspecialistaHorarios(especialistaModificado: Especialista): Promise<void> 
       horarios: especialistaModificado.horarios
     })
     .then(() => {
-        console.log(especialistaModificado.horarios);
-        resolve(); // Se resuelve la promesa si la operación se completa correctamente
+        resolve();
       })
       .catch((error) => {
-        reject(error); // Se rechaza la promesa si ocurre un error durante la operación
+        reject(error);
       });
   });
 }
@@ -206,10 +205,8 @@ getAdministradorByMail(email:string){
   let administrador: any;
 
   this.administradores.forEach((item:Administrador) => {
-    console.log("item" +item);
     if (item.email === email) {
       administrador = item;
-      console.log("aadministrador" +administrador);
     }
   });
   return administrador;

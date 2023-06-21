@@ -18,14 +18,12 @@ export class ListadoEspecialistasComponent {
 
   constructor(private afAuth:AngularFireAuth,public especilistaModificado:UsuariosService, private toastr:ToastrService, private router:Router) {
     const currentUrl = this.router.url;
-    console.log(currentUrl);
     if(currentUrl == '/administrador/solicitar-turno'){
       this.isSolicitarTurno=true;
     }
   }
 
   enviarEspecialista(especialista:Especialista){
-    console.log(especialista);
 
     this.especialistaSeleccionado.emit(especialista);
   }

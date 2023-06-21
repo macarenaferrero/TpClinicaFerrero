@@ -12,20 +12,20 @@
               <table class="table table-bordered">
                   <tr>
                       <td><strong>Nombre:</strong></td>
-                      <td>{{usuario.nombre!}}</td>
+                      <td>{{this.usuario?.nombre}}</td>
                   </tr>
                   <tr>
                       <td><strong>Apellido:</strong></td>
-                      <td>{{usuario.apellido}}</td>
+                      <td>{{this.usuario?.apellido}}</td>
                   </tr>
                   <tr>
                       <td><strong>Email:</strong></td>
-                      <td>{{usuario.email}}</td>
+                      <td>{{this.usuario?.email}}</td>
                   </tr>
                   <tr>
                       <td><strong>Tipo Usuario:</strong></td>
                       <td>
-                          {{usuario.tipoUsuario}}
+                          {{this.usuario?.tipoUsuario}}
                           <div *ngIf="isAdmin">Administrador</div>
                           <div *ngIf="isEspecialista">Especialista</div>
                           <div *ngIf="isPaciente">Paciente</div>
@@ -36,10 +36,10 @@
           <div class="form-group col-8">
               <div class="row">
                   <div class="form-group col-md-4">
-                      <img [src]="usuario.imagen1" class="square-image">
+                      <img [src]="this.usuario?.imagen1" class="square-image">
                   </div>
-                  <div class="form-group col-md-4" *ngIf="usuario.imagen2">
-                      <img [src]="usuario.imagen2" class="square-image">
+                  <div class="form-group col-md-4" *ngIf="this.usuario?.imagen2">
+                      <img [src]="this.usuario?.imagen2" class="square-image">
                   </div>
               </div>
           </div>

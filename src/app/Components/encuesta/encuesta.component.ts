@@ -42,14 +42,6 @@ export class EncuestaComponent {
   }
 
   enviar(){
-    console.log(this.usuario);
-
-    console.log(this.formulario);
-
-    // const nombre = this.formulario.controls['nombre'].value;
-    // const apellido = this.formulario.controls['apellido'].value;
-    // const edad = this.formulario.controls['edad'].value;
-    // const telefono = this.formulario.controls['telefono'].value;
     const pregUno = this.formulario.controls['pregUno'].value;
     const pregDos = this.formulario.controls['pregDos'].value;
     const pregTres = this.formulario.controls['pregTres'].value;
@@ -57,33 +49,4 @@ export class EncuestaComponent {
     this.encuestaSvc.addEncuesta(this.turno, pregUno, pregDos, pregTres);
     this.router.navigate(['home']);
   }
-
-  // validarNombre(control: AbstractControl){
-  //   const nombre = control.value;
-  //   const tieneEspacio = nombre.includes(' ');
-  //   if(tieneEspacio){
-  //     return { tieneEspacio: true };
-  //   }
-  //   return null;
-  // }
-
-  // validarTelefono(control: AbstractControl){
-  //   const telefono = control.value;
-  //   const telefonoNumerico = parseInt(telefono);
-  //   if(!telefonoNumerico){
-  //     return { telefonoNumerico: true };
-  //   }
-  //   return null;
-  // }
-
-  // validarTelefonoLenth(control: AbstractControl){
-  //   const telefono = control.value;
-  //   const telefonoLength = telefono.length;
-  //   console.log(telefono.length);
-
-  //   if(telefonoLength > 10){
-  //     return { telefonoLength: true };
-  //   }
-  //   return null;
-  //}
 }
