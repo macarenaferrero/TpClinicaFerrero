@@ -28,7 +28,7 @@
         <a class="nav-link active" routerLink="/especialista/mis-turnos" *ngIf="isEspecialista">Mis Turnos</a>
         <a class="nav-link active" routerLink="/administrador/solicitar-turno" *ngIf="isAdmin || isPaciente">Solicitar Turno</a>
         <a class="nav-link active" routerLink="/especialista/mi-perfil">Mi Perfil</a>
-        <a class="nav-link active" routerLink="/home/pacientes" *ngIf="isEspecialista">Pacientes</a>
+        <a class="nav-link active" routerLink="/especialista/pacientes" *ngIf="isEspecialista">Pacientes</a>
       </div>
     </div>
     <a class="nav-link disabled">{{usuario?.email}}</a>

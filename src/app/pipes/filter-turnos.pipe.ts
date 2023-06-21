@@ -12,6 +12,7 @@ export class FilterTurnosPipe implements PipeTransform {
 
       for (const post of value) {
         if (post.especialidad && post.especialidad.indexOf(arg) > -1 ||
+          post.especialista && post.especialista.indexOf(arg) > -1 ||
           post.paciente && post.paciente.indexOf(arg) > -1 ||
           post.estado && post.estado.indexOf(arg) > -1 ||
           post.fecha && post.fecha.indexOf(arg) > -1 ||

@@ -1,0 +1,37 @@
+main {
+  height: 500px; /* Ajusta la altura deseada */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Modificado para alinearlo en la parte superior */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between; /* Modificado para mantener la misma distancia en los extremos */
+  align-items: center;
+  width: 100%;
+}
+
+
+#imgBotonesLog{
+  height: 73px;
+  width: 73px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  background-color: rgba(146, 151, 146, 0.171);
+
+}
+
+#btnLogs{
+  height: 85px;
+  width: 85px;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left:5px;
+  padding-right:5px;
+  border-color: black;
+  border-radius: 50%;
+
+}

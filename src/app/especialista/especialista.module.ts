@@ -9,6 +9,7 @@ import { MiPerfilComponent } from '../Components/mi-perfil/mi-perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HistoriaClinicaComponent } from '../Components/historia-clinica/historia-clinica.component';
 import { AltaHistoriaClinicaComponent } from '../Components/alta-historia-clinica/alta-historia-clinica.component';
+import { PacientesComponent } from './pacientes/pacientes.component';
 
 
 
@@ -18,7 +19,8 @@ import { AltaHistoriaClinicaComponent } from '../Components/alta-historia-clinic
     MisHorariosComponent,
     MiPerfilComponent,
     HistoriaClinicaComponent,
-    AltaHistoriaClinicaComponent
+    AltaHistoriaClinicaComponent,
+    PacientesComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { AltaHistoriaClinicaComponent } from '../Components/alta-historia-clinic
     MisHorariosComponent,
     MiPerfilComponent,
     HistoriaClinicaComponent,
-    AltaHistoriaClinicaComponent
+    AltaHistoriaClinicaComponent,
+    PacientesComponent
   ]
 })
 export class EspecialistaModule { }

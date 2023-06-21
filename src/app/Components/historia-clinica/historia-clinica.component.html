@@ -12,6 +12,7 @@
        <th>Especialidad</th>
        <th>Especialista</th>
        <th>Reseña</th>
+       <th>Registro</th>
     </tr>
     <tr *ngFor="let turno of turnosPaciente">
 
@@ -29,7 +30,16 @@
               Admin: {{ turno.comentariosAdmin }}
           </div>
       </td>
+      <td><ul>
+        <li>Temperatura: {{turno.historiaClinica?.temperatura}}</li>
+        <li>Presión: {{turno.historiaClinica?.presion}}</li>
+        <li>Altura: {{turno.historiaClinica?.altura}}</li>
+        <li>Peso: {{turno.historiaClinica?.peso}}</li>
+        <li>{{turno.historiaClinica?.clave1}}: {{turno.historiaClinica?.valor1}}</li>
+        <li>{{turno.historiaClinica?.clave2}}: {{turno.historiaClinica?.valor2}}</li>
+        <li>{{turno.historiaClinica?.clave3}}: {{turno.historiaClinica?.valor3}}</li>
+      </ul></td>
     </tr>
   </table>
 </div>
-<button type="button" class="btn btn-danger m-3" appPosicion (click)="crearPdf()">Descargar pdf</button>
+<button type="button" class="btn btn-secondary m-3" (click)="crearPdf()">Descargar pdf</button>
