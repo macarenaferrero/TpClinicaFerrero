@@ -1,4 +1,4 @@
 export class Especialidad {
   nombre!: string;
-  imgEspecialidadUrl!: string;
+  imgEspecialidadUrl!: "../../assets/imagenNoEncontrada.jpg";
 }
