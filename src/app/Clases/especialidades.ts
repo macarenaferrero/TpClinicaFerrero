@@ -1,4 +1,10 @@
 export class Especialidad {
   nombre!: string;
-  imgEspecialidadUrl!: "../../assets/imagenNoEncontrada.jpg";
+  imgEspecialidadUrl!: string;
+
+  constructor(nombre: string) {
+    this.nombre = nombre;
+    this.imgEspecialidadUrl = "../../assets/imagenNoEncontrada.jpg";
+  }
+
 }

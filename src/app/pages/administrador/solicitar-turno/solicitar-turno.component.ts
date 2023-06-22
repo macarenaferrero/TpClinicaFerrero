@@ -126,6 +126,7 @@ export class SolicitarTurnoComponent {
 
   asignarEspecialidadSeleccionada(especialidad:any) {
     this.especialidadSeleccionada = especialidad;
+    console.log(this.especialidadSeleccionada);
 
   }
 

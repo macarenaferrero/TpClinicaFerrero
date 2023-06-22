@@ -114,6 +114,7 @@ addEspecilidad(especialidadData: string): Promise<void> {
     const especialidades = doc(this.coleccionEspecialidades);
     setDoc(especialidades, {
       id: especialidades.id,
+      imgEspecialidadUrl: "../../assets/imagenNoEncontrada.jpg",
     especialidadData
     })
       .then(() => {
