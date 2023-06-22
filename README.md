@@ -8,7 +8,7 @@ Bienvenido al espacio virtual de la clínica, desde este espacio podrás crearte
 
 Para accesos rápidos contas en el inicio de sesión contarás con pacientes, especialistas y un administrador por defecto.
 
-![Alt text](image.png)
+![Alt text](image-8.png)
 
 Desde el rol de paciente podrás generar tu perfil, sacar turnos con los variados especialistas, ver, modificar y cancelar los turnos que tengas asignados. Desde tu perfil podrás descargar un excel, donde verás todas las atenciones que iniciaste y finalizaste en la clínica, sumando los detalles de la atención que indicó el especialista. Además cómo nuestra prioridad es que te encuentres satisfecho con nosotros habilitamos un espacio para que puedas dejar un comentario luego de la atención o el porque debes cancelar un turno.
 
