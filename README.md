@@ -10,12 +10,13 @@ Para accesos rápidos contas en el inicio de sesión contarás con pacientes, es
 
 ![Alt text](image-8.png)
 
-Desde el rol de paciente podrás generar tu perfil, sacar turnos con los variados especialistas, ver, modificar y cancelar los turnos que tengas asignados. Desde tu perfil podrás descargar un excel, donde verás todas las atenciones que iniciaste y finalizaste en la clínica, sumando los detalles de la atención que indicó el especialista. Además cómo nuestra prioridad es que te encuentres satisfecho con nosotros habilitamos un espacio para que puedas dejar un comentario luego de la atención o el porque debes cancelar un turno.
+Desde el rol de paciente podrás generar tu perfil, sacar turnos con los variados especialistas, ver, modificar y cancelar los turnos que tengas asignados. Desde tu perfil podrás descargar un excel, donde verás todas las atenciones que iniciaste y finalizaste en la clínica, sumando los detalles de la atención que indicó el especialista. Además cómo nuestra prioridad es que te encuentres satisfecho con nosotros habilitamos un espacio para que puedas dejar un comentario luego de la atención o el porque debes cancelar un turno. Desde la pestaña de pacientes podrás ver a todos aquellos pacientes de la clínica que atendiste al menos una vez, viendo el detalle del turno y los comentarios del mismo.
 
 ![Alt text](image-5.png)
 ![Alt text](image-6.png)
 ![Alt text](image-3.png)
 ![Alt text](image-2.png)
+![Alt text](image-16.png)
 
 Desde el rol de especialista, podrás añadir tus especializaciones y los horarios disponibles para tomar turnos. Al igual que desde el rol del paciente, podrás ver, modificar o cancelar los turnos que tengas asignados. Si el mismo ha finalizado tendrás un espacio para dar de alta la historia clínica, indicando las puntos medidos e importantes de la consulta. Eso sí, para acceder a todas estas funcionalidades, primero deberás ser aprobado por el administrador para el acceso al sistema. 
 
