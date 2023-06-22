@@ -25,13 +25,13 @@
         <h5>Seleccionar fecha</h5>
         <div class="h-100 p-5 bg-body-tertiary row">
           <div class="form-group col-md-2" *ngFor="let fecha of turnosDisponibles">
-            <button class="btn btn-secondary mb-2" (click)="mostrarHorarios(fecha)">{{fecha.row_date.day}}/{{fecha.row_date.month}}/{{fecha.row_date.year}}</button>
+            <button class="btn btn-secondary mb-2" (click)="mostrarHorarios(fecha)">{{fecha.row_date.day}}-{{fecha.row_date.month}}-{{fecha.row_date.year}}</button>
           </div>
         </div>
       </div>
     </div>
       <div *ngIf="fechaElegida">
-        <h5>Horarios disponibles para {{fechaElegida.row_date.day}}/{{fechaElegida.row_date.month}}/{{fechaElegida.row_date.year}}</h5>
+        <h5>Horarios disponibles para {{fechaElegida.row_date.day}}-{{fechaElegida.row_date.month}}-{{fechaElegida.row_date.year}}</h5>
         <div class="h-100 p-5 bg-body-tertiary row">
           <div class="form-group col-md-1" *ngFor="let hora of fechaElegida.row_date.hours">
             <button class="btn btn-secondary mb-2" (click)="fechaTurnoElegido(hora)" *ngIf="hora">{{hora}}</button>

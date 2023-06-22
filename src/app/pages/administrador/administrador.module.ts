@@ -18,6 +18,7 @@ import { MisHorariosComponent } from 'src/app/especialista/mis-horarios/mis-hora
 import { FormsModule } from '@angular/forms';
 import { ListadoEspecialistasFotosComponent } from 'src/app/Components/listado-especialistas-fotos/listado-especialistas-fotos.component';
 import { ListadoEspecialidadesFotosComponent } from 'src/app/Components/listado-especialidades-fotos/listado-especialidades-fotos.component';
+import { ExcelTurnosComponent } from 'src/app/Components/excel-turnos/excel-turnos.component';
 
 
 
@@ -29,7 +30,8 @@ import { ListadoEspecialidadesFotosComponent } from 'src/app/Components/listado-
     TurnosComponent,
     SolicitarTurnoComponent,
     ListadoEspecialistasFotosComponent,
-    ListadoEspecialidadesFotosComponent
+    ListadoEspecialidadesFotosComponent,
+    ExcelTurnosComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { ListadoEspecialidadesFotosComponent } from 'src/app/Components/listado-
     TurnosComponent,
     SolicitarTurnoComponent,
     ListadoEspecialistasFotosComponent,
-    ListadoEspecialidadesFotosComponent
+    ListadoEspecialidadesFotosComponent,
+    ExcelTurnosComponent
   ]
 })
 export class AdministradorModule { }

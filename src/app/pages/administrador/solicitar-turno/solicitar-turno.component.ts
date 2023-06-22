@@ -57,6 +57,7 @@ export class SolicitarTurnoComponent {
   administradores:Administrador[]=[];
   especialistas: Especialista[] = [];
   especialidadesConImagenes: any[] = [];
+  fechaNueva: any;
 
   constructor(private usuarioSvc: UsuariosService, private afAuth: AngularFireAuth,
      private turnoSvc: TurnoService, private router: Router, private toastr: ToastrService) {
@@ -282,28 +283,29 @@ export class SolicitarTurnoComponent {
     var fechaDis;
     this.turnosOcupados.forEach((turno: { fecha: string; hora: any; }) => {
       for (let index = 0; index < this.fechas.length; index++) {
-        const element = this.fechas[index];
-        fechaDis = element.row_date.day + "/" + element.row_date.month + "/" + element.row_date.year;
+        this.fechaNueva = this.fechas[index];
+        console.log("this.fechaNueva fecha: "+this.fechaNueva);
+        console.log(this.fechas[index]);
+        fechaDis = this.fechaNueva.row_date.day + "/" + this.fechaNueva.row_date.month + "/" + this.fechaNueva.row_date.year;
 
         if (turno.fecha == fechaDis) {
-          // console.log("fechaDis " + fechaDis);
-          // console.log("fecha turno ocupado " + turno.fecha);
-          // console.log(element);
+          console.log("fechaDis " + fechaDis);
+          console.log("fecha turno ocupado " + turno.fecha);
 
-          for (let index = 0; index < element.row_date.hours.length; index++) {
-            const item = element.row_date.hours[index];
+          for (let index = 0; index < this.fechaNueva.row_date.hours.length; index++) {
+            const item = this.fechaNueva.row_date.hours[index];
             if (item == turno.hora) {
-             // console.log("element: " + item + "hora ocupada:  " + turno.hora + " en fecha   " + fechaDis);
+             console.log("this.fechaNueva: " + item + "hora ocupada: " + turno.hora + " en fecha " + fechaDis);
 
               //fecha.row_date.hours.splice(fecha.row_date.hours[index], 1);
-              element.row_date.hours[index] = null;
-              //fecha.row_date.hours[index] = fecha.row_date.hours[index].replace(element, "")
-             // console.log("horario eliminado   " + item);
+              this.fechaNueva.row_date.hours[index] = null;
+              //fecha.row_date.hours[index] = fecha.row_date.hours[index].replace(this.fechaNueva, "")
+             console.log("horario eliminado " + item);
 
             }
           }
         }
-        this.turnosDisponibles.push(element);
+        this.turnosDisponibles.push(this.fechaNueva);
       }
 
 

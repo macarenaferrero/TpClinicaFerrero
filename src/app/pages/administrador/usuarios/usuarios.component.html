@@ -9,7 +9,9 @@
     <div class="p-5 mb-4 bg-body-tertiary border rounded-3">
       <div class="container-fluid py-1">
         <h4>Pacientes</h4>
-        <app-listado-pacientes [listadoPacientes]="pacientes" ></app-listado-pacientes>
+        <app-listado-pacientes [listadoPacientes]="pacientes" (pacienteSeleccionado)="enviarUsuarioSeleccionado($event)"></app-listado-pacientes>
+        <br/>
+        <app-excel-turnos *ngIf="mostrarDetalle" [paciente]="usuarioElegido" ></app-excel-turnos>
         <br/>
         <h4>Especialistas</h4>
         <app-listado-especialistas [listadoEspecialistas]="especialistas" (especialistaSeleccionado)="modificarEspecialista($event)" ></app-listado-especialistas>
@@ -21,7 +23,7 @@
       <div class="col-md-6">
         <div class="h-100 p-5 bg-body-tertiary border rounded-3">
           <h2>Crear Usuario</h2>
-          <p>Desde aquí podrá crear usuarios del tipo paciente, especialisata o administrador.</p>
+          <p>Desde aquí podrá crear usuarios del tipo paciente, especialista o administrador.</p>
           <button class="btn btn-secondary" type="button" (click)="crearUsuario()">Completar registro</button>
         </div>
       </div>

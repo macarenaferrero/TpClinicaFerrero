@@ -31,7 +31,8 @@ export class UsuariosComponent {
   crearUnUsuario:boolean=false;
   especialistaModificado?:Especialista;
   uid:string="";
-
+  public mostrarDetalle = false;
+  public usuarioElegido = Paciente;
 
   modificarEspecialista = (especialista: Especialista) => {
     this.especialistaModificado = especialista;
@@ -47,6 +48,7 @@ export class UsuariosComponent {
     this.especialistas = nuevoListadoEspecialistas; // Actualiza el arreglo original
 
   }
+
 
   constructor(public usuariosService: UsuariosService, private toastr: ToastrService,
      private afAuth: AngularFireAuth, private router:Router) { }
@@ -77,6 +79,15 @@ export class UsuariosComponent {
 
   crearUsuario(){
     this.crearUnUsuario=true;
+  }
+
+  enviarUsuarioSeleccionado(pacienteSeleccionado: any) {
+    this.mostrarDetalle = true;
+    console.log("mostrar detalle? "+this.mostrarDetalle);
+    this.usuarioElegido = pacienteSeleccionado;
+    console.log("desde usuario.ts el elegido es: "+this.usuarioElegido);
+    console.log("desde usuario.ts el paciente elegido es: "+pacienteSeleccionado);
+
   }
 
   ngOnInit(): void {
