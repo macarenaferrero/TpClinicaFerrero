@@ -83,10 +83,7 @@ export class UsuariosComponent {
 
   enviarUsuarioSeleccionado(pacienteSeleccionado: any) {
     this.mostrarDetalle = true;
-    console.log("mostrar detalle? "+this.mostrarDetalle);
     this.usuarioElegido = pacienteSeleccionado;
-    console.log("desde usuario.ts el elegido es: "+this.usuarioElegido);
-    console.log("desde usuario.ts el paciente elegido es: "+pacienteSeleccionado);
 
   }
 

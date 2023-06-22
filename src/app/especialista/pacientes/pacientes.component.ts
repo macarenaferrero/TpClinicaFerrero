@@ -63,18 +63,8 @@ export class PacientesComponent {
    this.pacientesEspecialista = [];
    this.turnosOcupados.forEach((element: Turno) => {
          if (element.idEspecialista == this.usuario?.id) {
-          console.log(element.paciente);
           this.pacientesEspecialista.push(element);
-          console.log(this.pacientesEspecialista);
 
-            // this.usuarioSvc.getListadoPacientes().subscribe((pacientes) => {
-            //   pacientes.forEach((paciente:Paciente) => {
-            //     if (paciente.nombre! + paciente.apellido == element.paciente) {
-            //       this.pacientesEspecialista.push(paciente);
-            //       console.log(this.pacientesEspecialista);
-            //     }
-            //   });
-            // });
          }
    });
  }

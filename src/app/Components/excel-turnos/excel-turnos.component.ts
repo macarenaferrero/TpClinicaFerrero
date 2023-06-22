@@ -30,7 +30,6 @@ export class ExcelTurnosComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.paciente);
   }
 
 
@@ -58,8 +57,6 @@ export class ExcelTurnosComponent {
           }
 
     });
-    console.log(this.turnosPaciente);
-
    }
 
   exportexcel(): void {

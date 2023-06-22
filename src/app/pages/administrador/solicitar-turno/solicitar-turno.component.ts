@@ -183,7 +183,6 @@ export class SolicitarTurnoComponent {
 
       this.turno.comentariosPaciente = "";
       this.turno.comentariosEspecialista = "";
-      console.log(this.turno);
 
       this.turnoSvc.addTurno(this.turno);
 
@@ -269,17 +268,13 @@ export class SolicitarTurnoComponent {
 
   mostrarHorarios(fecha:any) {
     this.fechaElegida = fecha;
-    console.log(this.fechaElegida);
   }
 
   fechaTurnoElegido(hora:any) {
     this.horaElegida = hora;
-    console.log(this.horaElegida);
   }
 
   cargarTurnosDisponibles() {
-    //console.log(this.fechas);
-
     var fechaDis;
     this.turnosOcupados.forEach((turno: { fecha: string; hora: any; }) => {
       for (let index = 0; index < this.fechas.length; index++) {
@@ -318,13 +313,9 @@ export class SolicitarTurnoComponent {
 
   enviarUsuarioSeleccionado(usuario: any) {
     this.pacienteSeleccionado = usuario;
-    console.log(this.pacienteSeleccionado);
-
   }
 
   resolvedPropio(captcha: boolean){
     this.captchaPropio = captcha;
   }
-
-
 }

@@ -27,6 +27,12 @@ administradores:Administrador[]=[];
 isHabilitado:boolean=true;
 usuarioAIngresar:any;
 userAccesoRapido:any;
+paciente1!:Paciente;
+paciente2!:Paciente;
+paciente3!:Paciente;
+especialista1!:Especialista;
+especialista2!:Especialista;
+administrador!:Administrador;
 
 
 constructor(private fb:FormBuilder, private afAuth:AngularFireAuth, private router:Router, private toastr:ToastrService,private usuariosService:UsuariosService) {
@@ -156,6 +162,35 @@ registrar(){
 ngOnInit(){
   this.usuariosService.getListadoEspecialistas().subscribe((especialistas:any)=>{
   this.especialistas=especialistas;
+  especialistas.forEach((especialista:any) => {
+    if(especialista.email == "vum97912@omeie.com"){
+      this.especialista1 = especialista;
+
+    }else if(especialista.email == "jja10313@zbock.com"){
+      this.especialista2 = especialista;
+    }
+
+    });
+  });
+
+  this.usuariosService.getListadoPacientes().subscribe((pacientes:any)=>{
+    pacientes.forEach((paciente:any) => {
+      if(paciente.email == "gpz78996@omeie.com"){
+        this.paciente1 = paciente;
+      }else if(paciente.email == "ffschzseimguglgddb@bbitf.com"){
+        this.paciente2 = paciente;
+      }else if(paciente.email == "ybabjicwnhqgtijowq@bbitf.com"){
+        this.paciente3 = paciente;
+      }
+    });
+  });
+
+  this.usuariosService.getListadoAdministradores().subscribe((administradores:any)=>{
+    administradores.forEach((administrador:any) => {
+      if(administrador.email == "tkd05413@omeie.com"){
+        this.administrador = administrador;
+      }
+  });
   });
 }
 }
