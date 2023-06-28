@@ -1,5 +1,5 @@
 main {
-  height: 500px; /* Ajusta la altura deseada */
+  height: 800px; /* Ajusta la altura deseada */
   display: flex;
   justify-content: center;
   align-items: flex-start; /* Modificado para alinearlo en la parte superior */

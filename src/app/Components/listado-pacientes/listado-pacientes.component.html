@@ -1,4 +1,4 @@
-<table class="table table-striped" *ngIf="listadoPacientes != undefined">
+<!-- <table class="table table-striped" *ngIf="listadoPacientes != undefined">
   <thead>
     <tr>
       <th scope="col">Nombre</th>
@@ -20,5 +20,16 @@
   <tbody>
 
   </tbody>
-</table>
+</table> -->
+<div class="row">
+<div class="col" *ngFor="let paciente of listadoPacientes"  (click)="enviarPaciente(paciente)">
+  <div class="card" style="width: 10rem; ; margin-bottom: 10px;">
+    <img class="card-img-top" [src]="paciente!.imagen1">
+    <div class="card-body">
+      <p class="card-text"><b>{{paciente!.nombre}} {{paciente!.apellido}}</b></p>
+      <p class="card-text">{{paciente!.email}}</p>
+    </div>
+  </div>
+</div>
+</div>
 

@@ -169,11 +169,11 @@ export class SolicitarTurnoComponent {
       this.turno.idEspecialista = this.especialistaSeleccionado.id;
       if (this.isAdmin) {
         this.turno.idPaciente = this.pacienteSeleccionado.id;
-        this.turno.paciente = this.pacienteSeleccionado.nombre + " " + this.pacienteSeleccionado.apellido;
+        this.turno.paciente = this.pacienteSeleccionado;
       }
       else {
         this.turno.idPaciente = this.usuario.id;
-        this.paciente = this.usuario.nombre + " " + this.usuario.apellido;
+        this.paciente = this.usuario;
         this.turno.paciente = this.paciente;
       }
       this.turno.especialista = this.especialistaSeleccionado.nombre + " " + this.especialistaSeleccionado.apellido;

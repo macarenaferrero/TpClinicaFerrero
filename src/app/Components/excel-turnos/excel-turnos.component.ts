@@ -52,7 +52,8 @@ export class ExcelTurnosComponent {
   buscarHistoria() {
     this.turnosPaciente = [];
     this.turnosOcupados.forEach((element: any) => {
-          if (element.paciente === this.paciente.nombre + " " + this.paciente.apellido) {
+          if (element.idPaciente === this.paciente.id) {
+            console.log("entro, coincide IdPaciente");
             this.turnosPaciente.push(element);
           }
 

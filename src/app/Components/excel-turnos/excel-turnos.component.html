@@ -12,6 +12,18 @@
           <td><strong>Email:</strong></td>
           <td>{{this.paciente?.email}}</td>
       </tr>
+      <tr>
+        <td><strong>Dni:</strong></td>
+        <td>{{this.paciente?.dni}}</td>
+      </tr>
+      <tr>
+        <td><strong>Edad:</strong></td>
+        <td>{{this.paciente?.edad}}</td>
+      </tr>
+      <tr>
+        <td><strong>Obra Social:</strong></td>
+        <td>{{this.paciente?.obraSocial}}</td>
+    </tr>
   </table>
 </div>
 
@@ -21,11 +33,14 @@
      <th>Fecha turno</th>
      <th>Especialidad</th>
      <th>Especialista</th>
+      <th>Estado</th>
   </tr>
   <tr *ngFor="let turno of turnosPaciente">
-     <td>{{ turno.fecha }}{{ turno.hora }}</td>
+     <td>{{ turno.fecha }} - {{ turno.hora }}</td>
      <td>{{ turno.especialidad }}</td>
      <td>{{ turno.especialista }}</td>
+     <td>{{ turno.estado }}</td>
+
   </tr>
 </table>
 

@@ -20,6 +20,7 @@ export class PacientesComponent {
   turnosOcupados: any;
   pacientesEspecialista: any;
   turnoSeleccionado: any;
+  turnosPaciente: any[] = [];
 
   constructor(private turnoSvc: TurnoService, private usuarioSvc: UsuariosService, private afAuth: AngularFireAuth,
     private historiaClinicaSvc: HistoriaClinicaService, private router: Router) {
@@ -61,15 +62,45 @@ export class PacientesComponent {
 
  cargarPacientes() {
    this.pacientesEspecialista = [];
-   this.turnosOcupados.forEach((element: Turno) => {
+   this.turnosPaciente = [];
+   this.turnosOcupados.forEach((element: any) => {
          if (element.idEspecialista == this.usuario?.id) {
+          if(this.pacientesEspecialista.length > 0){
+          this.pacientesEspecialista.forEach((turno: any) => {
+            if(turno.paciente?.email != element.paciente?.email){
+              this.pacientesEspecialista.push(element);
+            }
+            else{
+              this.turnosPaciente.push(element);
+            }
+          });
+         }else{
           this.pacientesEspecialista.push(element);
-
-         }
+        }
+        }
    });
  }
+//  buscarHistoria() {
+//   this.turnosPaciente = [];
+//   this.turnosOcupados.forEach((element: any) => {
+//         if (element.idPaciente === this.paciente.id) {
+//           console.log("entro, coincide IdPaciente");
+//           this.turnosPaciente.push(element);
+//         }
+
+//   });
+//  }
+
+
 
  emitirUser(turno: any) {
   this.turnoSeleccionado = turno;
+  // this.turnoSvc.getListadoTurnos().subscribe((turnos) => {
+  //   turnos.forEach((element: Turno) => {
+  //     if(element.idPaciente == this.turnoSeleccionado.idPaciente){
+  //       this.listadoTurnosDelPaciente.push(element);
+  //     }
+  //   });
+  // });
 }
 }

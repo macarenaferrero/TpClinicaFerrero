@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { map } from 'rxjs';
 import { HistoriaClinica } from 'src/app/Clases/historia-clinica';
 import { Turno } from 'src/app/Clases/turno';
@@ -24,11 +24,12 @@ export class HistoriaClinicaComponent {
   public listadoHistoriaClinica: any = [];
   public listaHistoriaClinica: any = [];
   usuario!: any;
-  // @Input() paciente! : Paciente;
+  @ViewChild('pdfTableEspecialista', { static: false }) pdfTableEspecialista: any;
   turnosOcupados: any;
   turnosPaciente: Turno[] = [];
   usuarioLoggeado:any;
   pacientes:Paciente[] = [];
+  turnosPorEspecialista: any[]= [];
 
   constructor(public historiaClinicaService: HistoriaClinicaService, public afAuth: AngularFireAuth,
      private turnoSvc: TurnoService, private usuariosService: UsuariosService) {
@@ -64,11 +65,44 @@ export class HistoriaClinicaComponent {
           if (element.idPaciente === this.usuario?.id && element.estado === "FINALIZADO") {
             this.turnosPaciente.push(element);
           }
-
     });
 
+  }
+  crearPdfEspecialista(especialista?: string){
+    this.turnosPorEspecialista = [];
+    console.log("especialista "+especialista);
+    this.turnosPaciente.forEach((element: Turno) => {
+      if(element.especialista === especialista){
+        this.turnosPorEspecialista.push(element);
+      }
+    });
 
-   }
+    setTimeout(() => {
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString();
+
+    let DATA = this.pdfTableEspecialista.nativeElement;
+
+    html2canvas(DATA).then(canvas => {
+      let fileWidth = 208;
+      let fileHeight = canvas.height * fileWidth / canvas.width;
+
+      const FILEURI = canvas.toDataURL('image/png')
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 20;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+
+      const fechaX = 170; // Posición X de la fecha
+      const fechaY = 15; // Posición Y de la fecha
+      PDF.text(formattedDate, fechaX, fechaY);
+
+      var nombreArchivo ='historia-clinica.pdf';
+      PDF.save(nombreArchivo);
+    });
+  }, 500);
+  }
+
    crearPdf() {
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString(); // Puedes personalizar el formato según tus necesidades

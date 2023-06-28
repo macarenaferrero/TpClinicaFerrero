@@ -90,11 +90,14 @@
         </div>
         <div class="alert alert-success" role="alert">
           <h4 class="alert-heading">Turno</h4>
-          <p>El paciente atendido fue: <b>{{turno.paciente}}</b>,
+          <p>El paciente atendido fue: <b>{{turno.paciente.nombre}} {{turno.paciente.apellido}}</b>,
             para la especialidad: <b>{{turno.especialidad}}</b>. </p>
-          <p>Reseña al respecto: <i>"{{turno.comentariosEspecialista}}" </i></p>
+          <p>Reseñas:</p>
+          <p *ngIf="turno.comentariosEspecialista != ''">Especialista: {{turno.comentariosEspecialista}}</p>
+          <p *ngIf="turno.comentariosPaciente != ''">Paciente:{{turno.comentariosPaciente}}</p>
+          <p *ngIf="turno.comentariosEspecialista == '' && turno.comentariosPaciente == ''">No se realizaron comentarios</p>
           <hr>
-          <p class="mb-0">Fecha de la atención: <b>{{turno.fecha}} {{turno.hora}}</b></p>
+          <p class="mb-0">Fecha de la atención: <b>{{turno.fecha}} - {{turno.hora}}</b></p>
         </div>
         <div style="align-items: center; display: grid;">
           <button class="btn btn-primary" type="submit" [disabled]="formulario.invalid">Enviar</button>

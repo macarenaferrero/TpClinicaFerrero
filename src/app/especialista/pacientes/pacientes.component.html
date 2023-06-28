@@ -5,19 +5,47 @@
       <div class="row">
         <div class="form-group col-2" *ngFor="let item of pacientesEspecialista">
           <button type="button" class="btn button-scale" id="btnLogs" (click)="emitirUser(item)">
-            <!-- <img id="imgBotonesLog" [src]="paciente.imagen1"> -->
-            <p id="imgBotonesLog">{{item.paciente}}</p>
+            <img id="imgBotonesLog" [src]="item.paciente?.imagen1">
           </button>
+          <h6>{{item.paciente?.nombre}} {{item.paciente?.apellido}}</h6>
         </div>
       </div>
       <br/>
       <div *ngIf="turnoSeleccionado" id="turno" class="alert alert-success mb-2" role="alert">
-        <h3>Atendido el: {{turnoSeleccionado.fecha}} {{turnoSeleccionado.hora}}</h3>
+        <h3>Atendido el: {{turnoSeleccionado?.fecha}} - {{turnoSeleccionado?.hora}}</h3>
         <h3>Reseñas:</h3>
-        <p *ngIf="turnoSeleccionado.comentariosAdmin != ''">Admin: {{turnoSeleccionado.comentariosAdmin}}</p>
         <p *ngIf="turnoSeleccionado.comentariosEspecialista != ''">Especialista: {{turnoSeleccionado.comentariosEspecialista}}</p>
         <p *ngIf="turnoSeleccionado.comentariosPaciente != ''">Paciente:{{turnoSeleccionado.comentariosPaciente}}</p>
-        <p *ngIf="turnoSeleccionado.comentariosAdmin == '' && turnoSeleccionado.comentariosEspecialista == '' && turnoSeleccionado.comentariosPaciente == ''">No se realizaron comentarios</p>
+        <p *ngIf="turnoSeleccionado.comentariosEspecialista == '' && turnoSeleccionado.comentariosPaciente == ''">No se realizaron comentarios</p>
+        <div *ngIf="turnoSeleccionado.estado == 'FINALIZADO' && turnoSeleccionado.historiaClinica != ''">
+          <h4>Historia Clínica:</h4>
+          <h5>Peso: {{turnoSeleccionado.historiaClinica.peso}}</h5>
+          <h5>Altura: {{turnoSeleccionado.historiaClinica.altura}}</h5>
+          <h5>Temperatura: {{turnoSeleccionado.historiaClinica.temperatura}}</h5>
+          <h5>Presion: {{turnoSeleccionado.historiaClinica.presion}}</h5>
+          <h5>{{turnoSeleccionado.historiaClinica.clave1}} : {{turnoSeleccionado.historiaClinica.valor1}}</h5>
+          <h5>{{turnoSeleccionado.historiaClinica.clave2}} : {{turnoSeleccionado.historiaClinica.valor2}}</h5>
+          <h5>{{turnoSeleccionado.historiaClinica.clave3}} : {{turnoSeleccionado.historiaClinica.valor3}}</h5>
+        </div>
+      </div>
+      <div *ngIf="turnoSeleccionado">
+        <div *ngFor="let item of turnosPaciente" id="turno" class="alert alert-success mb-2" role="alert">
+          <h3>Atendido el: {{item?.fecha}} - {{item?.hora}}</h3>
+          <h3>Reseñas:</h3>
+          <p *ngIf="item.comentariosEspecialista != ''">Especialista: {{item.comentariosEspecialista}}</p>
+          <p *ngIf="item.comentariosPaciente != ''">Paciente:{{item.comentariosPaciente}}</p>
+          <p *ngIf="item.comentariosEspecialista == '' && item.comentariosPaciente == ''">No se realizaron comentarios</p>
+          <div *ngIf="item.estado == 'FINALIZADO' && item.historiaClinica != ''">
+            <h4>Historia Clínica:</h4>
+            <h5>Peso: {{item.historiaClinica.peso}}</h5>
+            <h5>Altura: {{item.historiaClinica.altura}}</h5>
+            <h5>Temperatura: {{item.historiaClinica.temperatura}}</h5>
+            <h5>Presion: {{item.historiaClinica.presion}}</h5>
+            <h5>{{item.historiaClinica.clave1}} : {{item.historiaClinica.valor1}}</h5>
+            <h5>{{item.historiaClinica.clave2}} : {{item.historiaClinica.valor2}}</h5>
+            <h5>{{item.historiaClinica.clave3}} : {{item.historiaClinica.valor3}}</h5>
+          </div>
+        </div>
       </div>
     </div>
   </div>

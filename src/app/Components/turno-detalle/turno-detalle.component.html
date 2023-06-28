@@ -7,7 +7,7 @@
         <div class="row">
               <div class="form-group col-md-6">
                   <h4>Fecha-Hora: {{turnoDetalle.fecha}} - {{turnoDetalle.hora}}</h4>
-                  <h4>Paciente: {{turnoDetalle.paciente}}</h4>
+                  <h4>Paciente: {{turnoDetalle.paciente.nombre}} {{turnoDetalle.paciente.apellido}}</h4>
                   <h4>Especialista: {{turnoDetalle.especialista}}</h4>
                   <h4>Especialidad: {{turnoDetalle.especialidad}}</h4>
                   <h4>Estado: {{turnoDetalle.estado}}</h4>
@@ -21,9 +21,19 @@
                           <button class="btn btn-success mb-2 p-2" (click)="enviarComentario()">Enviar</button>
                       </div>
                   </div>
+                  <div *ngIf="turnoDetalle.estado == 'FINALIZADO' && turnoDetalle.historiaClinica != ''">
+                    <h4>Historia Clínica:</h4>
+                    <h5>Peso: {{turnoDetalle?.historiaClinica.peso}}</h5>
+                    <h5>Altura: {{turnoDetalle?.historiaClinica.altura}}</h5>
+                    <h5>Temperatura: {{turnoDetalle?.historiaClinica.temperatura}}</h5>
+                    <h5>Presion: {{turnoDetalle?.historiaClinica.presion}}</h5>
+                    <h5>{{turnoDetalle?.historiaClinica.clave1}} : {{turnoDetalle?.historiaClinica.valor1}}</h5>
+                    <h5>{{turnoDetalle?.historiaClinica.clave2}} : {{turnoDetalle?.historiaClinica.valor2}}</h5>
+                    <h5>{{turnoDetalle?.historiaClinica.clave3}} : {{turnoDetalle?.historiaClinica.valor3}}</h5>
+                  </div>
                   <div *ngIf="isPaciente">
                       <div *ngIf="turnoDetalle.estado == 'REALIZADO'" class="form-group">
-                          <h4>Comentarios Paciente: {{turnoDetalle.comentariosPaciente}}</h4>
+                          <h4>Comentarios Paciente: {{turnoDetalle?.comentariosPaciente}}</h4>
                           <textarea *ngIf="isPaciente" class="form-control  mb-2"
                               [(ngModel)]="nuevoComentarioPaciente"></textarea>
                               <button class="btn btn-success mb-2 p-2" (click)="enviarComentario()">Enviar</button>
