@@ -1,0 +1,8 @@
+<div id="pdfTable" #pdfTable class="col-12">
+  <div id="chart-line">
+      <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+          style="width: 700x; height: 400px; display: block;">
+      </highcharts-chart>
+  </div>
+</div>
+<button type="button" class="btn btn-danger ml-5 mb-5" (click)="crearPdf()">Descargar pdf</button>

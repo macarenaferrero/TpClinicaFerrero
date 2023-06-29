@@ -15,6 +15,7 @@ coleccionPacientes: CollectionReference<DocumentData> = collection(this.firestor
 coleccionEspecialistas: CollectionReference<DocumentData> = collection(this.firestore, 'especialistas');
 coleccionEspecialidades: CollectionReference<DocumentData> = collection(this.firestore, 'especialidades');
 coleccionAdministradores: CollectionReference<DocumentData> = collection(this.firestore, 'administradores');
+coleccionLogs: CollectionReference<DocumentData> = collection(this.firestore, 'logIngresos');
 especialidades!: Observable<any[]>;
 especialistas!: Observable<any[]>;
 pacientes!: Observable<any[]>;
@@ -213,5 +214,21 @@ getAdministradorByMail(email:string){
   return administrador;
 }
 
+
+addLogIngresos(email: string) {
+  var fecha = new Date();
+    const ingresos = doc(this.coleccionLogs);
+  setDoc(ingresos, {
+    id: ingresos.id,
+    email: email,
+    fecha: fecha.toLocaleDateString(),
+    hora: fecha.toLocaleTimeString()
+  })
+}
+
+getLogs(): Observable<any>{
+  const observable = collectionData(this.coleccionLogs);
+  return observable;
+}
 
 }

@@ -17,15 +17,12 @@ import { SharedModule } from './Shared/shared.module';
 import { AdministradorRoutingModule } from './pages/administrador/administrador-routing.module';
 import { HomeModule } from './pages/home/home.module';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
-import { ListadoEspecialidadesFotosComponent } from './Components/listado-especialidades-fotos/listado-especialidades-fotos.component';
-import { AltaHistoriaClinicaComponent } from './Components/alta-historia-clinica/alta-historia-clinica.component';
-import { HistoriaClinicaComponent } from './Components/historia-clinica/historia-clinica.component';
-import { ExcelTurnosComponent } from './Components/excel-turnos/excel-turnos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigInComponent,
+
 
   ],
   imports: [
@@ -44,6 +41,7 @@ import { ExcelTurnosComponent } from './Components/excel-turnos/excel-turnos.com
     HomeRoutingModule,
     AdministradorRoutingModule,
     HomeModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,19 @@
+<div class="container" style="width: 1050px;">
+  <table class="table table-striped table-bordered" id="excel-table" >
+      <thead>
+          <tr>
+              <th>Usuario</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let usuario of logs">
+              <td>{{usuario.email}}</td>
+              <td>{{usuario.fecha}}</td>
+              <td>{{usuario.hora}}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+<button  class="btn btn-success ml-5 mb-5" (click)="exportexcel()"> Descargar Excel</button>

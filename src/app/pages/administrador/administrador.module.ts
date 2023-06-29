@@ -19,6 +19,13 @@ import { FormsModule } from '@angular/forms';
 import { ListadoEspecialistasFotosComponent } from 'src/app/Components/listado-especialistas-fotos/listado-especialistas-fotos.component';
 import { ListadoEspecialidadesFotosComponent } from 'src/app/Components/listado-especialidades-fotos/listado-especialidades-fotos.component';
 import { ExcelTurnosComponent } from 'src/app/Components/excel-turnos/excel-turnos.component';
+import { EstadisticasComponent } from 'src/app/Components/estadisticas/estadisticas.component';
+import { LogIngresosComponent } from 'src/app/Components/log-ingresos/log-ingresos.component';
+import { CantTurnosPorEspecialidadComponent } from 'src/app/Components/cant-turnos-por-especialidad/cant-turnos-por-especialidad.component';
+import { TurnosPorDiaComponent } from 'src/app/Components/turnos-por-dia/turnos-por-dia.component';
+import { TurnosFinalizadosComponent } from 'src/app/Components/turnos-finalizados/turnos-finalizados.component';
+import { TurnosPorEspecialistaComponent } from 'src/app/Components/turnos-por-especialista/turnos-por-especialista.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 
@@ -31,7 +38,13 @@ import { ExcelTurnosComponent } from 'src/app/Components/excel-turnos/excel-turn
     SolicitarTurnoComponent,
     ListadoEspecialistasFotosComponent,
     ListadoEspecialidadesFotosComponent,
-    ExcelTurnosComponent
+    ExcelTurnosComponent,
+    LogIngresosComponent,
+    EstadisticasComponent,
+    CantTurnosPorEspecialidadComponent,
+    TurnosPorDiaComponent,
+    TurnosFinalizadosComponent,
+    TurnosPorEspecialistaComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +53,7 @@ import { ExcelTurnosComponent } from 'src/app/Components/excel-turnos/excel-turn
     RouterModule,
     HomeModule,
     FormsModule,
+    HighchartsChartModule
   ],
   exports: [
     UsuariosComponent,
@@ -49,7 +63,13 @@ import { ExcelTurnosComponent } from 'src/app/Components/excel-turnos/excel-turn
     SolicitarTurnoComponent,
     ListadoEspecialistasFotosComponent,
     ListadoEspecialidadesFotosComponent,
-    ExcelTurnosComponent
+    ExcelTurnosComponent,
+    LogIngresosComponent,
+    EstadisticasComponent,
+    CantTurnosPorEspecialidadComponent,
+    TurnosPorDiaComponent,
+    TurnosFinalizadosComponent,
+    TurnosPorEspecialistaComponent,
   ]
 })
 export class AdministradorModule { }

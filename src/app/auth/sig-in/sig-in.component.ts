@@ -83,6 +83,7 @@ login(){
           this.toastr.success("Ingreso satisfactorio", "Bienvenido", {timeOut: 500});
           this.router.navigate(['/home']);
         }
+        this.usuariosService.addLogIngresos(email);
     }else{
       this.loading = false;
       this.router.navigate(['/bienvenida']);

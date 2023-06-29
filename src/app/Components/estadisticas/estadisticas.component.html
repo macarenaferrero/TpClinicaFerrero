@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row">
+      <div class="form-group mt-3">
+          <button type="button" class="btn btn-outline-secondary mb-2" (click)="mostrarIngresos()">Logs Ingresos</button>
+          <button  type="button" class="btn btn-secondary mb-2" (click)="mostrarTurnosByEspecialidad()">Turnos por especialidad</button>
+          <button  type="button" class="btn btn-secondary mb-2" (click)="mostrarTurnosPorDia()">Cantidad Turnos por dia</button>
+          <button  type="button" class="btn btn-secondary mb-2" (click)="mostrarTurnosXMedico()">Cantidad Turnos por Médico</button>
+          <button  type="button" class="btn btn-secondary mb-2" (click)="mostrarTurnosXMedicoFinalizados()">Cantidad Turnos por Médico Finalizados</button>
+      </div>
+      <br>
+      <app-log-ingresos *ngIf="mostrarLogs"></app-log-ingresos>
+      <br>
+      <app-cant-turnos-por-especialidad *ngIf="mostrarTurnosEspecialidad"></app-cant-turnos-por-especialidad>
+      <br>
+      <app-turnos-por-dia *ngIf="mostrarTurnosXDia"></app-turnos-por-dia>
+      <br>
+      <app-turnos-por-especialista *ngIf="mostrarTurnosXEspecialista"></app-turnos-por-especialista>
+      <br>
+      <app-turnos-finalizados *ngIf="mostrarTurnosXEspecialistaFinalizados"></app-turnos-finalizados>
+  </div>
+</div>
+
+<app-footer></app-footer>
